@@ -1,0 +1,92 @@
+/* Elements */
+nav#arriba{
+    border-radius: 1.25rem;
+}
+
+h4{
+    text-align: center;
+    text-shadow: 0.0625rem 0.1875rem 0.3125rem rgb(83, 83, 83);
+}
+aside{
+    width: 30%;
+    height: 100vh;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    
+}
+table{
+    background-color: var(--fourth-color);
+    border-collapse: collapse;
+    border: 0.125rem solid var(--third-color);
+    margin:auto;
+}
+nav > ul li{
+    list-style: none;
+}
+article{
+    display: flex;
+    justify-content: center;
+    border: 0.125rem solid var(--third-color);
+    background-color: var(--fourth-color);
+    border-radius: 1.25rem;
+    margin: 1.875rem;
+}
+footer{
+    bottom: 0;
+}
+
+/* Identifiers */
+#clasificacion{
+    box-sizing: border-box;
+    display: inline-block;
+    position: fixed;
+    border: 0.125rem solid var(--third-color);
+    background-color: var(--fourth-color);
+    margin: 0.5rem 1.25rem;
+    padding-right: 1rem;
+}
+
+/* Classes */
+.niveluno{
+    margin-left: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+.niveldos{
+    margin-left: 2.5rem;
+    text-decoration: none;
+    color: rgba(var(--third-alpha-color), 0.75);
+}
+.photo{
+    width: 30%;
+    margin: auto;
+    display: block;
+    padding:0.625rem;
+    border-radius: 1rem;
+}
+.fototabla{
+    margin: auto;
+    display: block;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding:0.625rem;
+  }
+.content{
+    width: 70%;
+    height: 1000vh;
+    position: relative;
+    top: 3.19rem;
+    left: 20rem;
+}
+.navlat{
+    padding: 0.125rem;
+}
+
+:nth-child(even of article) {
+    flex-direction: row-reverse;
+  }

@@ -1,0 +1,11 @@
+.photo{
+    width: 25%;
+    margin: auto;
+    display: block;
+}
+.tablet{
+    text-align: center;
+}
+.iria{
+    border-radius: 0.5rem;
+}

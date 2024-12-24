@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Estilos/reseteo.css"/>
+    <link rel="stylesheet" href="../Estilos/comun.css"/>
+    <link rel="stylesheet" href="../Estilos/encargos.css"/>
+    <title>Encargos</title>
+</head>
+<body>
+    <header>
+        <img alt="imagen alargada con personajes de anime y el título dibujos neo cretácico" id="banner" src="../Imagen/DibujoDigital/Logos/Banner.png">
+        <nav id="arriba">
+            <div class="dropdown">
+                <a href="../principal.html">Principal</a>
+                <div class="dropdown-content">
+                    <a href="../principal.html#dibujodigital">Dibujo digital</a>
+                    <a href="../principal.html#dibujotradicional">Dibujo tradicional</a>
+                </div>
+            </div>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="encargos.html">Encargos</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+    <main>
+        <p>Si estás interesado en realizar un encargo en este apartado se proporciona la información necesaria y un formulario para este fin.</p>
+        <p>Los encargos pueden ser de distintos tipos (foto de perfil, logo, bandera...) como se ve en el apartado del Portfolio, así como en digital o en tradicional, en este último caso el envío es a cargo del comprador.
+            Sin embargo, no se realizarán dibujos de carácter ofensivo o nsfw (+18).
+        </p>
+        <p>En cuánto al precio, este puede variar, normalmente, en un rango de 5-20€, esto dependerá del tipo y complejidad del encargo. Para ello me pondré en contacto mediante el método especificado en el formulario para
+            establecer los detalles necesarios, así como tratar el precio.
+        </p>
+        <form>
+            <fieldset>
+                <legend>Formulario</legend>
+                <div class="formulario">
+                    <label>Nombre o apodo: </label>
+                        <input placeholder="Iria" name="nombre" type="text">
+                    <br>
+                    <label>Método de contacto (red y nombre de usuario...): </label>
+                        <input placeholder="Twitter, @iria_novoa" name="contacto" type="text">
+                    <br>
+                    <label>Tipo de encargo: </label>
+                        <input name="tipo" type="radio"><label>Tradicional</label>
+                        <input name="tipo" type="radio"><label>Digital</label>
+                    <br>
+                    <label>Finalidad del encargo: </label>
+                        <br>
+                        <input name="finalidad" type="radio"><label>Foto de perfil</label>
+                        <br>
+                        <input name="finalidad" type="radio"><label>Banner</label>
+                        <br>
+                        <input name="finalidad" type="radio"><label>Logo</label>
+                        <br>
+                        <input name="finalidad" type="radio"><label>Bandera</label>
+                        <br>
+                        <input name="finalidad" type="radio"><label>Persona(s) / animal(es)</label>
+                        <br>
+                        <input name="finalidad" type="radio"><label>Emote(s)</label>
+                        <br>
+                        <input name="finalidad" type="radio"><label>Ilustración anime</label>
+                        <br>
+                        <input name="finalidad" type="radio"><label>Otro (especificar): </label><input placeholder="Marcapáginas" name="otro" type="text">
+                    <br>
+                    <label>Detalles del encargo: </label>
+                    <br>
+                    <textarea placeholder="Escribe los detalles"></textarea>
+                    <br>
+                    <button type="submit">Enviar formulario</button>
+                    <button type="reset">Borrar formulario</button>
+                </div>      
+            </fieldset>
+        </form>
+        <p  class="abajo"><a href="#arriba">Aquí puedes volver a la parte de arriba</a></p>
+    </main>
+    <footer>©<span id="year"></span> Proyecto Lenguaje de Marcas Iria UDAW1</footer>
+   
+    <script src="../javascript.js"></script>
+</body>
+</html>

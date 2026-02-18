@@ -1,0 +1,126 @@
+/* Roots and imports */
+:root{
+    font-size: 16px;
+    --main-color:rgb(252, 245, 233);
+    --second-color:rgb(254,179,173);
+    --third-color:rgb(045,042,131);
+    --third-alpha-color: 045,042,131;
+    --fourth-color:rgb(152,219,229);
+}
+
+/* Elements */
+html{
+    background-color: var(--main-color);
+    text-align: justify;
+    color: var(--third-color);
+    font-family: "Brush Script MT", cursive, serif;
+}
+h1, h2{
+  text-align: center;
+}
+h1{
+  font-size: 2rem;
+  font-weight: bold;
+}
+h2{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+h3{
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+h4{
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+nav#arriba{
+    border-radius: 1.25rem;
+}
+a{
+  color: var(--third-color);
+}
+nav#arriba > a, nav#arriba > div a{
+    color: var(--third-color);
+    text-decoration: none;
+    padding: 0.625rem;
+    
+}
+nav#arriba, footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--fourth-color);
+    height: 2rem;
+}
+nav#arriba{
+  justify-content: space-evenly;
+}
+
+  /* Formulario */
+form{
+  display: flex;
+  justify-content: center;
+}
+legend, fieldset{
+  border: 1px solid var(--third-color);
+}
+legend, button{
+  background-color: var(--second-color);
+}
+fieldset{
+  background-color: var(--fourth-color);
+  padding: 1rem;
+}
+input, textarea{
+  background-color: var(--third-color);
+  color: lightgrey;
+}
+button:hover{
+  box-shadow: 0rem 0.25rem 0.5rem 0rem lightslategray;
+  background-color: rgb(224, 149, 144);
+}
+
+/* Identifiers */
+#banner{
+    width: 100%;
+}
+
+/* Classes */
+.abajo, p, h1, h2, h3, h4{
+  margin: 1rem;
+}
+.abajo{
+  text-align: center;
+}
+.cursiva{
+  font-style: italic;
+}
+.negrita{
+  font-weight: bold;
+}
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 110%;
+    overflow: auto;
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+    background-color: var(--fourth-color);
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown-content a {
+    display: block;
+    color: var(--third-color);
+    padding: 5px;
+    text-decoration: none;
+}
+.dropdown-content a:hover, nav > a:hover, nav > div a:hover {
+    color: black;
+    background-color: var(--second-color);
+}

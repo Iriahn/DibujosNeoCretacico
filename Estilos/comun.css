@@ -1,60 +1,83 @@
 /* Roots and imports */
+
+/* Lato font */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+/* Rubik font */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 :root{
-    font-size: 16px;
-    --main-color:rgb(252, 245, 233);
-    --second-color:rgb(254,179,173);
-    --third-color:rgb(045,042,131);
-    --third-alpha-color: 045,042,131;
-    --fourth-color:rgb(152,219,229);
+  --main-color:rgb(252, 245, 233);
+  --second-color:rgb(254,179,173);
+  --third-color:rgb(045,042,131);
+  --fourth-color:rgb(152,219,229);
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--third-color);
 }
 
 /* Elements */
 html{
-    background-color: var(--main-color);
-    text-align: justify;
-    color: var(--third-color);
-    font-family: "Brush Script MT", cursive, serif;
+  background-color: var(--main-color);
+  text-align: justify;
+}
+h1, h2, h3, h4{
+  font-style: italic;
+  font-weight: bold;
+  font-family: "Rubik", sans-serif;
 }
 h1, h2{
   text-align: center;
 }
 h1{
   font-size: 2rem;
-  font-weight: bold;
 }
 h2{
   font-size: 1.5rem;
-  font-weight: bold;
 }
 h3{
   font-size: 1.25rem;
-  font-weight: bold;
 }
 h4{
   font-size: 1.15rem;
-  font-weight: bold;
-}
-nav#arriba{
-    border-radius: 1.25rem;
 }
 a{
   color: var(--third-color);
 }
-nav#arriba > a, nav#arriba > div a{
-    color: var(--third-color);
-    text-decoration: none;
-    padding: 0.625rem;
-    
+nav#arriba{
+  border-bottom-left-radius: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
+  justify-content: space-evenly;
+  height: 2.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 nav#arriba, footer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--fourth-color);
-    height: 2rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--third-color);
+  width: 100%;
 }
-nav#arriba{
-  justify-content: space-evenly;
+nav#arriba > a, nav#arriba > div a{
+  color: white;
+  text-decoration: none;
+  padding: 0.625rem;
+}
+/* nav#arriba > a:visited{
+  font-size: 20px;
+  color: var(--second-color);
+} */
+nav#arriba > a:hover {
+  font-size: 20px;
+  color: var(--second-color);
+}
+nav#arriba > div > a:hover{
+  color: var(--second-color);
+}
+img.logo{
+  width: 20%;
+  margin: auto;
 }
 
   /* Formulario */
@@ -80,10 +103,26 @@ button:hover{
   box-shadow: 0rem 0.25rem 0.5rem 0rem lightslategray;
   background-color: rgb(224, 149, 144);
 }
+footer{
+  justify-content: center;
+  color: white;
+  height: 2.5rem;
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
+}
 
 /* Identifiers */
-#banner{
-    width: 100%;
+#cabecera{
+  background-image: linear-gradient(to right, var(--second-color) , var(--third-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#cabecera > h1{
+  color: var(--main-color);
+  text-shadow: 2px 2px 9px;
+  margin: auto;
+  width: 200px;
 }
 
 /* Classes */
@@ -100,27 +139,29 @@ button:hover{
   font-weight: bold;
 }
 .dropdown {
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
 }
 .dropdown-content {
-    display: none;
-    position: absolute;
-    width: 110%;
-    overflow: auto;
-    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
-    background-color: var(--fourth-color);
+  display: none;
+  position: absolute;
+  margin-top: 7px;
+  padding-top: 5px;
+  width: 6rem;
+  /* overflow: auto; */
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+  background-color: var(--third-color);
+  text-align: center;
 }
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 .dropdown-content a {
-    display: block;
-    color: var(--third-color);
-    padding: 5px;
-    text-decoration: none;
+  display: block;
+  padding: 5px;
+  text-decoration: none;
 }
-.dropdown-content a:hover, nav > a:hover, nav > div a:hover {
-    color: black;
-    background-color: var(--second-color);
+.dropdown-content a:hover {
+  background-color: var(--second-color);
+  color: var(--third-color);
 }

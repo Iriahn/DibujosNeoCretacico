@@ -2,28 +2,34 @@
     <html lang="es">
         <head>
             <meta charset="UTF-8"/>
-            <title>Dibujo</title>
-            <link rel="stylesheet" href="Estilos/reseteo.css"/>
-            <link rel="stylesheet" href="Estilos/comun.css"/>
-            <link rel="stylesheet" href="Estilos/principal.css"/>
+            <link rel="icon" href="Imagen/faviconIria.png">
+            <title>Dibujos Neo Cretácico</title>
+            <link rel="stylesheet" href="estilos/reseteo.css"/>
+            <link rel="stylesheet" href="estilos/comun.css"/>
+            <link rel="stylesheet" href="estilos/principal.css"/>
         </head>
         <body>
             <header>
-                <img alt="imagen alargada con personajes de anime y el título dibujos neo cretácico" id="banner" src="./Imagen/DibujoDigital/Logos/Banner.png">
+                <div id="cabecera">
+                    <img class="logo" src="imagen/NeoCretacico.png" alt="logo dibujos neo cretácico">
+                    <h1>Dibujos Neo Cretácico</h1>
+                </div>
+                <div id="progreso"></div>
                 <nav id="arriba">
+                    <a href="index.html">Principal</a>
+                    <a href="documentos/portfolio.html">Portfolio</a>
+                    <a href="documentos/encargos.html">Encargos</a>
+                    <a href="documentos/contacto.html">Contacto</a>
                     <div class="dropdown">
-                        <a href="index.html">Principal</a>
-                        <div class="dropdown-content">
-                            <a href="index.html#dibujodigital">Dibujo digital</a>
-                            <a href="index.html#dibujotradicional">Dibujo tradicional</a>
+                        <a href="index.html">Cuenta</a>
+                        <div class="dropdown-content"> <!-- Al iniciar sesión se añadirán las opciones pertinentes -->
+                            <a href="index.html#dibujodigital">Registrarse</a>
+                            <a href="index.html#dibujotradicional">Iniciar sesión</a>
+                            <a href="index.html#dibujotradicional">Salir</a>
                         </div>
                     </div>
-                    <a href="Documentos/portfolio.html">Portfolio</a>
-                    <a href="Documentos/encargos.html">Encargos</a>
-                    <a href="Documentos/contacto.html">Contacto</a>
                 </nav>
-
-            </header>    
+            </header>
             <main>
                 <h1 id="introducción">Introducción</h1>
                 <img alt="una chica con una equipación de fútbol, gafas y flequillo dibujada en estilo anime" class="photo iria" src="Imagen/DibujoDigital/Personas/Iria.png">
@@ -55,7 +61,7 @@
 
                 <p class="abajo"><a href="#arriba">Aquí puedes volver a la parte de arriba</a></p>
             </main>
-            <footer>©<span id="year"></span> Proyecto Lenguaje de Marcas Iria UDAW1</footer>
+            <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
    
             <script src="javascript.js"></script>
         </body>

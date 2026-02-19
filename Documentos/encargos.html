@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Estilos/reseteo.css"/>
-    <link rel="stylesheet" href="../Estilos/comun.css"/>
-    <link rel="stylesheet" href="../Estilos/encargos.css"/>
+    <link rel="stylesheet" href="../estilos/reseteo.css"/>
+    <link rel="stylesheet" href="../estilos/comun.css"/>
+    <link rel="stylesheet" href="../estilos/encargos.css"/>
     <title>Encargos</title>
 </head>
 <body>
     <header>
-        <img alt="imagen alargada con personajes de anime y el título dibujos neo cretácico" id="banner" src="../Imagen/DibujoDigital/Logos/Banner.png">
+        <div id="cabecera">
+           <img class="logo" src="../imagen/NeoCretacico.png" alt="logo dibujos neo cretácico">
+            <h1>Dibujos Neo Cretácico</h1>
+        </div>
+        <div id="progreso"></div>
         <nav id="arriba">
-            <div class="dropdown">
-                <a href="../index.html">Principal</a>
-                <div class="dropdown-content">
-                    <a href="../index.html#dibujodigital">Dibujo digital</a>
-                    <a href="../index.html#dibujotradicional">Dibujo tradicional</a>
-                </div>
-            </div>
+            <a href="../index.html">Principal</a>
             <a href="portfolio.html">Portfolio</a>
             <a href="encargos.html">Encargos</a>
             <a href="contacto.html">Contacto</a>
+            <div class="dropdown">
+                <a href="../index.html">Cuenta</a>
+                <div class="dropdown-content">
+                    <a href="../index.html#dibujodigital">Registrarse</a>
+                    <a href="../index.html#dibujotradicional">Iniciar sesión</a>
+                    <a href="../index.html#dibujotradicional">Salir</a>
+                </div>
+            </div>
         </nav>
     </header>
     <main>
@@ -36,17 +42,20 @@
             <fieldset>
                 <legend>Formulario</legend>
                 <div class="formulario">
-                    <label>Nombre o apodo: </label>
+                    <label for="nombre">Nombre o apodo: </label>
                         <input placeholder="Iria" name="nombre" type="text">
                     <br>
-                    <label>Método de contacto (red y nombre de usuario...): </label>
-                        <input placeholder="Twitter, @iria_novoa" name="contacto" type="text">
+                    <label for="contactored">Red de contacto:</label>
+                        <input placeholder="Twitter" name="contactored" type="text">
+                    <br>
+                    <label for="contactouser">Nombre de usuario en esa red: </label>
+                        <input placeholder="@iria_novoa" name="contactouser" type="text">
                     <br>
                     <label>Tipo de encargo: </label>
                         <input name="tipo" type="radio"><label>Tradicional</label>
                         <input name="tipo" type="radio"><label>Digital</label>
                     <br>
-                    <label>Finalidad del encargo: </label>
+                    <label for="finalidad">Finalidad del encargo: </label>
                         <br>
                         <input name="finalidad" type="radio"><label>Foto de perfil</label>
                         <br>
@@ -75,7 +84,7 @@
         </form>
         <p  class="abajo"><a href="#arriba">Aquí puedes volver a la parte de arriba</a></p>
     </main>
-    <footer>©<span id="year"></span> Proyecto Lenguaje de Marcas Iria UDAW1</footer>
+    <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
    
     <script src="../javascript.js"></script>
 </body>

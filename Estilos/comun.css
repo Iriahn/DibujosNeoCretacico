@@ -7,20 +7,29 @@
 
 :root{
   --main-color:rgb(252, 245, 233);
-  --second-color:rgb(254,179,173);
-  --third-color:rgb(045,042,131);
-  --fourth-color:rgb(152,219,229);
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-size: 17px;
-  color: var(--third-color);
+  --second-color:rgb(045,042,131);
+  --third-color:rgb(152,219,229);
+  --fourth-color:rgb(254,179,173);
+  --max-width: 1200px;
+}
+
+*{
+  box-sizing: border-box;
 }
 
 /* Elements */
 body{
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.4rem;
+  color: var(--second-color);
   background-color: var(--main-color);
   text-align: justify;
   min-height: 100dvh;
+}
+main{
+  padding: 2rem 1rem;
 }
 h1, h2, h3, h4{
   font-style: italic;
@@ -43,13 +52,17 @@ h4{
   font-size: 1.15rem;
 }
 a{
-  color: var(--third-color);
+  color: var(--second-color);
+}
+a:hover:not(.logo-a){
+  color: var(--main-color);
+  background-color: var(--second-color);
 }
 nav#arriba{
   border-bottom-left-radius: 0.9rem;
   border-bottom-right-radius: 0.9rem;
   justify-content: space-evenly;
-  height: 2.5rem;
+  height: 2.7rem;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -57,7 +70,7 @@ nav#arriba{
 nav#arriba, footer{
   display: flex;
   align-items: center;
-  background-color: var(--third-color);
+  background-color: var(--second-color);
   width: 100%;
 }
 nav#arriba > a, nav#arriba > div a{
@@ -65,45 +78,74 @@ nav#arriba > a, nav#arriba > div a{
   text-decoration: none;
   padding: 0.625rem;
 }
-/* nav#arriba > a:visited{
-  font-size: 20px;
-  color: var(--second-color);
-} */
 nav#arriba > a:hover{
   font-size: 20px;
-  color: var(--second-color);
+  color: var(--fourth-color);
 }
 nav#arriba > div > a:hover{
+  color: var(--fourth-color);
+}
+nav#arriba > div div a:hover{ 
+  background-color: var(--fourth-color);
   color: var(--second-color);
+}
+img{
+  user-select: none;
 }
 img.logo{
   max-height: 8rem;
-  margin: auto;
 }
 
-  /* Formulario */
+  /* ------------- Formulario ------------- */
 form{
   display: flex;
   justify-content: center;
+  /* padding: 1.25rem; */
+}
+legend{
+  padding: 0.25rem 1rem;
 }
 legend, fieldset{
-  border: 1px solid var(--third-color);
+  border: 1px solid var(--second-color);
+  border-radius: 0.75rem;
 }
 legend, button{
-  background-color: var(--second-color);
-}
-fieldset{
   background-color: var(--fourth-color);
-  padding: 1rem;
 }
-input, textarea{
-  background-color: var(--third-color);
-  color: lightgrey;
+button{
+  color: var(--second-color);
+  transition: transform 0.1s;
 }
 button:hover{
-  box-shadow: 0rem 0.25rem 0.5rem 0rem lightslategray;
-  background-color: rgb(224, 149, 144);
+  box-shadow: 0rem 0.25rem 0.35rem 0rem lightslategray;
+  background-color: var(--second-color);
+  color: white;
+  cursor: pointer;
+  /* filter: brightness(1.5); */
+  transform: translateY(-0.2rem);
 }
+fieldset{
+  background-color: var(--third-color);
+  padding: 1rem;
+}
+label{
+  margin-bottom: 0.3rem;
+}
+input[type="text"], textarea{
+  background-color: var(--main-color);
+  border: 1px solid var(--second-color);
+  padding: 0.5rem;
+  border-radius: 0.35rem;
+  /* width: 100%; */
+}
+input:hover, textarea:hover{
+  border: 1px solid var(--fourth-color);
+}
+input, textarea, button{
+  font-size: 1rem;
+  font-family: "Lato", sans-serif;
+}
+  /* ------------------------------------- */
 footer{
   justify-content: center;
   color: white;
@@ -114,7 +156,7 @@ footer{
 
 /* Identifiers */
 #cabecera{
-  background-image: linear-gradient(to right, var(--second-color) , var(--third-color));
+  background-image: linear-gradient(to right, var(--fourth-color) , var(--second-color));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,12 +190,11 @@ footer{
   display: none;
   position: absolute;
   margin-top: -1px;
-  margin-left: -20px;
+  margin-left: -23px;
   padding-top: 2px;
-  width: 6rem;
-  /* overflow: auto; */
+  width: 6.9rem;
   box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
-  background-color: var(--third-color);
+  background-color: var(--second-color);
   text-align: center;
 }
 .dropdown:hover .dropdown-content {
@@ -164,13 +205,29 @@ footer{
   padding: 5px;
   text-decoration: none;
 }
-nav#arriba > div div a:hover{ 
-  background-color: var(--second-color);
-  color: var(--third-color);
-}
 .usericon{
   height: 2.25rem;
 }
-.usericon:hover{
+.usericonhover{
   height: 2.5rem;
+  content: url("/imagen/unregisterediconhover.png");
+}
+.logo-a{
+  margin: auto;
+}
+.form-group{
+  margin-bottom: 0.88rem;
+  display: flex;
+  flex-direction: column;
+}
+.radio-finalidad{
+  margin: 0.59rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.button-container{
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 0.65rem;
 }

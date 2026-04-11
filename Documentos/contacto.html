@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../estilos/reseteo.css"/>
-    <link rel="stylesheet" href="../estilos/comun.css"/>
-    <link rel="stylesheet" href="../estilos/contacto.css"/>
+    <link rel="icon" href="/imagen/faviconIria.png">
     <title>Contacto</title>
+    <link rel="stylesheet" href="/estilos/reseteo.css"/>
+    <link rel="stylesheet" href="/estilos/comun.css"/>
+    <link rel="stylesheet" href="/estilos/contacto.css"/>
+    <script src="/scripts/comun.js" defer></script>
 </head>
 <body>
     <header>
         <div id="cabecera">
-           <img class="logo" src="../imagen/NeoCretacico.png" alt="logo dibujos neo cretácico">
+           <a class="logo-a" href="/index.html"><img class="logo" src="/imagen/NeoCretacico.png" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
         <div id="progreso"></div>
         <nav id="arriba">
-            <a href="../index.html">Principal</a>
+            <a href="/index.html">Principal</a>
             <a href="portfolio.html">Portfolio</a>
             <a href="encargos.html">Encargos</a>
             <a href="contacto.html">Contacto</a>
             <div class="dropdown">
-                <a href="../index.html"><img class="usericon" src="../imagen/unregisteredicon.png"></a>
+                <a href="/index.html"><img id="usericon" class="usericon" src="/imagen/unregisteredicon.png"></a>
                 <div class="dropdown-content">
-                    <a href="../index.html#dibujodigital">Registrarse</a>
-                    <a href="../index.html#dibujotradicional">Iniciar sesión</a>
-                    <a href="../index.html#dibujotradicional">Salir</a>
+                    <a href="/index.html#dibujodigital">Registrarse</a>
+                    <a href="/index.html#dibujotradicional">Iniciar sesión</a>
+                    <a href="/index.html#dibujotradicional">Salir</a>
                 </div>
             </div>
         </nav>
@@ -33,17 +35,17 @@
     <main>
         <h1>Contacto</h1>
         <p>Si necesitas ponerte en contacto conmigo puedes usar cualquiera de las siguientes formas:</p>
-        <ul>
-            <li class="red"><span class="negrita">Twitter:</span> <a href="https://x.com/iria_novoa" target="_blank">@iria_novoa</a></li>
-            <li class="red"><span class="negrita">Instagram:</span> <a href="https://www.instagram.com/austin_astro/" target="_blank">austin_astro</a></li>
-            <li class="red"><span class="negrita">Discord:</span> <a href="https://discordapp.com/users/iria8023" target="_blank">iria8023</a></li>
-            <li class="red"><span class="negrita">Correo:</span> <a href="mailto:iriahn22@gmail.com" target="_blank">iriahn22@gmail.com</a></li>
-            <li class="red"><span class="negrita">Telegram:</span> <a href="https://t.me/Iriahn" target="_blank">Iria hn (@Iriahn)</a></li>
-        </ul>
-        <p class="abajo"><a href="#arriba">Aquí puedes volver a la parte de arriba</a></p>
+        <div class="redes">
+            <ul>
+                <li class="red"><span class="negrita">Twitter:</span> <a href="https://x.com/iria_novoa" target="_blank">@iria_novoa</a></li>
+                <li class="red"><span class="negrita">Instagram:</span> <a href="https://www.instagram.com/austin_astro/" target="_blank">austin_astro</a></li>
+                <li class="red"><span class="negrita">Discord:</span> <a href="https://discordapp.com/users/iria8023" target="_blank">iria8023</a></li>
+                <li class="red"><span class="negrita">Correo:</span> <a href="mailto:iriahn22@gmail.com" target="_blank">iriahn22@gmail.com</a></li>
+                <li class="red"><span class="negrita">Telegram:</span> <a href="https://t.me/Iriahn" target="_blank">Iria hn (@Iriahn)</a></li>
+            </ul>
+        </div>
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
    
-    <script src="../javascript.js"></script>
 </body>
 </html>

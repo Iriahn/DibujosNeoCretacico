@@ -2,16 +2,18 @@
     <html lang="es">
         <head>
             <meta charset="UTF-8"/>
-            <link rel="icon" href="Imagen/faviconIria.png">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="icon" href="imagen/faviconIria.png">
             <title>Dibujos Neo Cretácico</title>
             <link rel="stylesheet" href="estilos/reseteo.css"/>
             <link rel="stylesheet" href="estilos/comun.css"/>
             <link rel="stylesheet" href="estilos/principal.css"/>
+            <script src="/scripts/comun.js" defer></script>
         </head>
         <body>
             <header>
                 <div id="cabecera">
-                    <img class="logo" src="imagen/NeoCretacico.png" alt="logo dibujos neo cretácico">
+                    <a class="logo-a" href="index.html"><img class="logo" src="imagen/NeoCretacico.png" alt="logo dibujos neo cretácico"></a>
                     <h1>Dibujos Neo Cretácico</h1>
                 </div>
                 <div id="progreso"></div>
@@ -21,7 +23,7 @@
                     <a href="documentos/encargos.html">Encargos</a>
                     <a href="documentos/contacto.html">Contacto</a>
                     <div class="dropdown">
-                        <a href="index.html"><img class="usericon" src="imagen/unregisteredicon.png"></a>
+                        <a href="index.html"><img id="usericon" class="usericon" src="imagen/unregisteredicon.png"></a>
                         <div class="dropdown-content"> <!-- Al iniciar sesión se añadirán las opciones pertinentes -->
                             <a href="index.html#dibujodigital">Registrarse</a>
                             <a href="index.html#dibujotradicional">Iniciar sesión</a>
@@ -59,10 +61,9 @@
 
                 <img class="photo tpn" alt="dibujo del animie the promised neverland" src="Imagen/DibujoTradicional/TPNGoldypond.jpg">
 
-                <p class="abajo"><a href="#arriba">Aquí puedes volver a la parte de arriba</a></p>
+                <p class="abajo"><a href="#arriba">Volver arriba</a></p>
             </main>
             <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
    
-            <script src="javascript.js"></script>
         </body>
     </html>

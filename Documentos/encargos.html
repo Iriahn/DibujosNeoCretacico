@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../estilos/reseteo.css"/>
-    <link rel="stylesheet" href="../estilos/comun.css"/>
-    <link rel="stylesheet" href="../estilos/encargos.css"/>
+    <link rel="icon" href="/imagen/faviconIria.png">
     <title>Encargos</title>
+    <link rel="stylesheet" href="/estilos/reseteo.css"/>
+    <link rel="stylesheet" href="/estilos/comun.css"/>
+    <script src="/scripts/comun.js" defer></script>
 </head>
 <body>
     <header>
         <div id="cabecera">
-           <img class="logo" src="../imagen/NeoCretacico.png" alt="logo dibujos neo cretácico">
+           <a class="logo-a" href="index.html"><img class="logo" src="/imagen/NeoCretacico.png" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
         <div id="progreso"></div>
         <nav id="arriba">
-            <a href="../index.html">Principal</a>
+            <a href="/index.html">Principal</a>
             <a href="portfolio.html">Portfolio</a>
             <a href="encargos.html">Encargos</a>
             <a href="contacto.html">Contacto</a>
             <div class="dropdown">
-                <a href="../index.html"><img class="usericon" src="../imagen/unregisteredicon.png"></a>
+                <a href="/index.html"><img id="usericon" class="usericon" src="/imagen/unregisteredicon.png"></a>
                 <div class="dropdown-content">
-                    <a href="../index.html#dibujodigital">Registrarse</a>
-                    <a href="../index.html#dibujotradicional">Iniciar sesión</a>
-                    <a href="../index.html#dibujotradicional">Salir</a>
+                    <a href="/index.html#dibujodigital">Registrarse</a>
+                    <a href="/index.html#dibujotradicional">Iniciar sesión</a>
+                    <a href="/index.html#dibujotradicional">Salir</a>
                 </div>
             </div>
         </nav>
@@ -41,51 +42,71 @@
         <form>
             <fieldset>
                 <legend>Formulario</legend>
-                <div class="formulario">
-                    <label for="nombre">Nombre o apodo: </label>
-                        <input placeholder="Iria" name="nombre" type="text">
-                    <br>
+                <div class="form-group">
+                    <label for="nombre">Nombre o apodo:</label>
+                    <input placeholder="Iria" name="nombre" type="text">
+                </div>
+                <div class="form-group">
                     <label for="contactored">Red de contacto:</label>
-                        <input placeholder="Twitter" name="contactored" type="text">
-                    <br>
-                    <label for="contactouser">Nombre de usuario en esa red: </label>
-                        <input placeholder="@iria_novoa" name="contactouser" type="text">
-                    <br>
-                    <label>Tipo de encargo: </label>
+                    <input placeholder="Twitter" name="contactored" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="contactouser">Nombre de usuario en esa red:</label>
+                    <input placeholder="@iria_novoa" name="contactouser" type="text">
+                </div>
+                <div class="form-group">
+                    <label>Tipo de encargo:</label>
+                    <div class="radio-tipo">
                         <input name="tipo" type="radio"><label>Tradicional</label>
                         <input name="tipo" type="radio"><label>Digital</label>
-                    <br>
-                    <label for="finalidad">Finalidad del encargo: </label>
-                        <br>
-                        <input name="finalidad" type="radio"><label>Foto de perfil</label>
-                        <br>
-                        <input name="finalidad" type="radio"><label>Banner</label>
-                        <br>
-                        <input name="finalidad" type="radio"><label>Logo</label>
-                        <br>
-                        <input name="finalidad" type="radio"><label>Bandera</label>
-                        <br>
-                        <input name="finalidad" type="radio"><label>Persona(s) / animal(es)</label>
-                        <br>
-                        <input name="finalidad" type="radio"><label>Emote(s)</label>
-                        <br>
-                        <input name="finalidad" type="radio"><label>Ilustración anime</label>
-                        <br>
-                        <input name="finalidad" type="radio"><label>Otro (especificar): </label><input placeholder="Marcapáginas" name="otro" type="text">
-                    <br>
-                    <label>Detalles del encargo: </label>
-                    <br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="finalidad">Finalidad del encargo:</label>
+                    <div class="radio-finalidad">
+                        <div class="radio-item">
+                            <input name="finalidad" type="radio"><label>Foto de perfil</label>
+                        </div>
+                        <div class="radio-item">
+                            <input name="finalidad" type="radio"><label>Banner</label>
+                        </div>
+                        <div class="radio-item">
+                            <input name="finalidad" type="radio"><label>Logo</label>
+                        </div>
+                        <div class="radio-item">
+                            <input name="finalidad" type="radio"><label>Bandera</label>
+                        </div>
+                        <div class="radio-item">
+                            <input name="finalidad" type="radio"><label>Persona(s) / animal(es)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input name="finalidad" type="radio"><label>Emote(s)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input name="finalidad" type="radio"><label>Ilustración anime</label>
+                        </div>
+                        <!-- Si se marca esta opción se mostrará el campo para escribir, de lo
+                         contrario se mantendrá oculto -->
+                        <div class="radio-item">
+                            <input name="finalidad" type="radio"><label>Otro (especificar):</label>
+                        </div>
+                    </div>
+                    <input placeholder="Marcapáginas" name="otro" type="text">
+                </div>    
+                <div class="form-group">
+                    <label>Detalles del encargo:</label>
                     <textarea placeholder="Escribe los detalles"></textarea>
-                    <br>
+                </div>    
+
+                <div class="button-container">
                     <button type="submit">Enviar formulario</button>
                     <button type="reset">Borrar formulario</button>
-                </div>      
+                </div>
             </fieldset>
         </form>
-        <p  class="abajo"><a href="#arriba">Aquí puedes volver a la parte de arriba</a></p>
+        <p  class="abajo"><a href="#arriba">Volver arriba</a></p>
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
    
-    <script src="../javascript.js"></script>
 </body>
 </html>

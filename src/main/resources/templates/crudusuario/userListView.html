@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/principal/fragmentos.html::cabecera}"><title>Usuario</title></head>
+<body>
+    <header>
+        <nav th:replace="~{/principal/fragmentos.html::navegador}"></nav>    
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${listaususarios}">
+                    <td th:text="${user.id}">Id</td>
+                    <td th:text="${user.nombre}">Nombre</td>
+                    <td><a th:href="@{/usuario/borrarUser/{id}(id=${user.id})}">Borrar</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/usuario/newUser}"><button type="button">Nuevo usuario</button></a>
+        <br><br>
+        <p th:text="${error}"></p>
+    </main>
+</body>
+</html>

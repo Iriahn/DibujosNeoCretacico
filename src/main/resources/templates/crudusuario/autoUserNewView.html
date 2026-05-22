@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{/principal/fragmentos.html::cabecera}"><title>Dibujo</title></head>
+  <body>
+    <header>
+        <nav th:replace="~{/principal/fragmentos.html::navegador}"></nav>    
+    </header>
+    <h1>Nuevo usuario</h1>
+    <form method="post" action="#" th:action="@{/usuario/autoUser/submit}"
+            th:object="${usuarioForm}">
+            <label><input type="hidden" id="id" th:field="*{id}" /></label><br/>
+            <label>Nombre:<input type="text" id="nombre" th:field="*{nombre}" /></label><br/>
+            <label>Contraseña:<input type="password" id="password" th:field="*{password}" /></label><br/>                   
+            <input type="submit" value="Enviar" />
+    </form>
+  </body>
+</html>

@@ -10,7 +10,7 @@ drawFooterYear();
 let usericon = document.querySelector("#usericon");
 let desplegable = document.querySelector(".dropdown-content");
 
-function addhoversesion(){
+function addhoversession(){
   usericon.classList.add("usericonhover");
   desplegable.classList.remove("ocultar");
 }
@@ -18,7 +18,7 @@ function removehoversession(){
   usericon.classList.remove("usericonhover");
   desplegable.classList.add("ocultar");
 }
-function hoversesionQuery(){
+function hoversessionQuery(){
   if(usericon.classList.contains("usericonhover")){
     usericon.classList.remove("usericonhover");
     desplegable.classList.add("ocultar");
@@ -32,9 +32,9 @@ function hoversesionQuery(){
 let element = document.querySelector(".dropdown");
 
 if(window.innerWidth < 760){
-  element.addEventListener("click", hoversesionQuery);
+  element.addEventListener("click", hoversessionQuery);
 }
 else{
-  element.addEventListener("mouseover", addhoversesion);
+  element.addEventListener("mouseover", addhoversession);
   element.addEventListener("mouseout", removehoversession);
 }

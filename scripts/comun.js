@@ -3,17 +3,38 @@ function drawFooterYear() {
   document.querySelector("#year").innerText = new Date().getFullYear();
 }
 
+drawFooterYear();
+
 /* Añadir o eliminar clase con efecto hover al icono de perfil para que cambie la 
   imagen con al pasar el cursor  */
+let usericon = document.querySelector("#usericon");
+let desplegable = document.querySelector(".dropdown-content");
+
 function addhoversesion(){
-  document.querySelector("#usericon").classList.add("usericonhover");
+  usericon.classList.add("usericonhover");
+  desplegable.classList.remove("ocultar");
 }
-function removehoversesion(){
-  document.querySelector("#usericon").classList.remove("usericonhover");
+function removehoversession(){
+  usericon.classList.remove("usericonhover");
+  desplegable.classList.add("ocultar");
+}
+function hoversesionQuery(){
+  if(usericon.classList.contains("usericonhover")){
+    usericon.classList.remove("usericonhover");
+    desplegable.classList.add("ocultar");
+  }
+  else{
+    usericon.classList.add("usericonhover");
+    desplegable.classList.remove("ocultar");
+  }
 }
 
 let element = document.querySelector(".dropdown");
-element.addEventListener("mouseover", addhoversesion);
-element.addEventListener("mouseout", removehoversesion);
 
-drawFooterYear();
+if(window.innerWidth < 760){
+  element.addEventListener("click", hoversesionQuery);
+}
+else{
+  element.addEventListener("mouseover", addhoversesion);
+  element.addEventListener("mouseout", removehoversession);
+}

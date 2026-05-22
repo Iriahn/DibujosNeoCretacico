@@ -1,5 +1,5 @@
 // Variable para guardar el menú desplegable con la clasificación de los dibujos
-let desplegable = document.querySelector(".hamburguer");
+let desplegador = document.querySelector(".hamburguer");
 // Variable para guardar contenedor del contenido del deplegable
 let contenido = document.querySelector("#hamburguer-content");
 // Variables que recogen los elementos del menú desplegable
@@ -29,7 +29,7 @@ function ocultar(){
 // Solo se aplican las funciones si el ancho de ventana es tamaño móvil
 if(window.innerWidth < 760){
     window.addEventListener("scroll", ocultarscroll);
-    desplegable.addEventListener("click", mostrar);
+    desplegador.addEventListener("click", mostrar);
     for(let i = 0; i < opcdespuno.length; i++){
         opcdespuno[i].addEventListener("click", ocultar);
     }

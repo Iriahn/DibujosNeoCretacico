@@ -12,7 +12,7 @@ import com.example.proyecto.domain.CategoriaEnum;
 import com.example.proyecto.domain.Usuario;
 import com.example.proyecto.dto.DibujoDto;
 import com.example.proyecto.domain.Dibujo;
-import com.example.proyecto.domain.EstiloEnum;
+import com.example.proyecto.domain.SubCategoriaEnum;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @Service
 @RequiredArgsConstructor
-public class DibujoService {
+public class MainService {
 
     private final ModelMapper modelMapper;
 
@@ -41,8 +41,8 @@ public class DibujoService {
         return CategoriaEnum.values();
     }
 
-    public EstiloEnum[] obtenerEstilos(){
-        return EstiloEnum.values();
+    public SubCategoriaEnum[] obtenerEstilos(){
+        return SubCategoriaEnum.values();
     }
 
     //Buscar en el servicio del 400
@@ -62,9 +62,9 @@ public class DibujoService {
         return null;
     }
 
-    public EstiloEnum obtenerEstilo(String id) throws RuntimeException{
-        EstiloEnum[] estilos = obtenerEstilos();
-        for (EstiloEnum e : estilos) {
+    public SubCategoriaEnum obtenerEstilo(String id) throws RuntimeException{
+        SubCategoriaEnum[] estilos = obtenerEstilos();
+        for (SubCategoriaEnum e : estilos) {
             if(e.name().equals(id))
                 return e;
             else{

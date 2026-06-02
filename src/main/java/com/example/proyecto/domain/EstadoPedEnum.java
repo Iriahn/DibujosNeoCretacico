@@ -1,6 +1,6 @@
 package com.example.proyecto.domain;
 
-public enum EstadoEnum {
+public enum EstadoPedEnum {
 
     PENDIENTE, ENVIADO, APROBADO, RECHAZADO, ENPROCESO, FINALIZADO
 

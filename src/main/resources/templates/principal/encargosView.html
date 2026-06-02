@@ -3,101 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/imagen/faviconIria.png">
+    <link rel="icon" th:href="@{images/faviconIria.png}">
     <title>Encargos</title>
-    <link rel="stylesheet" href="/estilos/reseteo.css"/>
-    <link rel="stylesheet" href="/estilos/comun.css"/>
-    <script src="/scripts/comun.js" defer></script>
-    <script src="/scripts/navsticky.js" defer></script>
+    <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
+    <link rel="stylesheet" th:href="@{css/comun.css}"/>
+    <link rel="stylesheet" th:href="@{css/encargos.css}"/>
+    <script th:src="@{js/comun.js}" defer></script>
+    <script th:src="@{js/navsticky.js}" defer></script>
 </head>
 <body>
     <header>
         <div id="cabecera">
-           <a class="logo-a" href="index.html"><img class="logo" src="/imagen/NeoCretacico.png" alt="logo dibujos neo cretácico"></a>
+            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
-        <div id="progreso"></div>
+        <!-- <div id="progreso"></div> -->
         <nav id="arriba">
-            <a href="/index.html">Principal</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="encargos.html">Encargos</a>
-            <a href="contacto.html">Contacto</a>
+            <a th:href="@{/}">Principal</a>
+            <a th:href="@{/portfolio}">Portfolio</a>
+            <a th:href="@{/encargos}">Encargos</a>
+            <a th:href="@{/contacto}">Contacto</a>
             <div class="dropdown">
-                <img id="usericon" class="usericon" src="/imagen/unregisteredicon.png">
+                <img id="usericon" class="usericon" src="@{images/unregisteredicon.png}">
                 <div class="dropdown-content ocultar">
-                    <a href="/index.html#dibujodigital">Registrarse</a>
-                    <a href="/index.html#dibujotradicional">Iniciar sesión</a>
-                    <a href="/index.html#dibujotradicional">Salir</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
+                    <a sec:authorize="hasAnyRole('MANAGER', 'ADMIN')" th:href="@{/gestionar}">Gestionar</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/usuario/register}">Registrarse</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Iniciar sesión</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Salir</a>
                 </div>
             </div>
         </nav>
     </header>
     <main>
-        <p>Si estás interesado en realizar un encargo en este apartado se proporciona la información necesaria y un formulario para este fin.</p>
-        <p>Los encargos pueden ser de distintos tipos (foto de perfil, logo, bandera...) como se ve en el apartado del Portfolio, así como en digital o en tradicional, en este último caso el envío es a cargo del comprador.
-            Sin embargo, no se realizarán dibujos de carácter ofensivo o nsfw (+18).
+        <p>Si estás interesado en tener alguno de los dibujos del portfolio en tu posesión este es el lugar.</p>
+        <p>En el formulario que encontrarás abajo puedes indicar el dibujo en el desplegable y seleccionar el tamaño
+            de la lámina (A4 o A5) así cómo indicar si prefieres la lámina en cartulina o (mate) en papel fotográfico 
+            (brillante). Además, en el cuadro de texto podrás poner observaciones o preferencias, por ejemplo, si te
+            guataría incluir un mensaje o dedicatoria.
         </p>
-        <p>En cuánto al precio, este puede variar, normalmente, en un rango de 5-20€, esto dependerá del tipo y complejidad del encargo. Para ello me pondré en contacto mediante el método especificado en el formulario para
-            establecer los detalles necesarios, así como tratar el precio.
-        </p>
-        <form>
+        <p class="titulotabla">La tabla de precios sería la siguiente:</p>
+        <table>
+            <tr>
+                <th class="tablavacio"></th>
+                <th>A4</th>
+                <th>A5</th>
+            </tr>
+            <tr>
+                <th>Brillante</th>
+                <td>9€</td>
+                <td>7€</td>
+            </tr>
+            <tr>
+                <th>Mate</th>
+                <td>7€</td>
+                <td>5€</td>
+            </tr>
+        </table>
+        <!-- FORMULARIO PARA PRINTS -->
+        <form action="#" method="post" th:action="@{/print/submit}" th:object="${print}">
             <fieldset>
                 <legend>Formulario</legend>
                 <div class="form-group">
                     <label for="nombre">Nombre o apodo:</label>
-                    <input placeholder="Iria" name="nombre" type="text">
+                    <input placeholder="Iria" name="nombre" type="text" th:field="*{nombre}">
                 </div>
                 <div class="form-group">
                     <label for="contactored">Red de contacto:</label>
-                    <input placeholder="Twitter" name="contactored" type="text">
+                    <input placeholder="Twitter" name="contactored" type="text" th:field="*{redContacto}">
                 </div>
                 <div class="form-group">
                     <label for="contactouser">Nombre de usuario en esa red:</label>
-                    <input placeholder="@iria_novoa" name="contactouser" type="text">
+                    <input placeholder="@iria_novoa" name="contactouser" type="text" th:field="*{redNombre}">
                 </div>
                 <div class="form-group">
-                    <label>Tipo de encargo:</label>
+                    <label>Print a encargar:</label>
+                    <select id="printdibujo" size="1" th:field="*{print}">
+                        <option th:value="elige">Elige...</option>
+                    </select>
+                </div>  
+                <div class="form-group">
+                    <label>Unidades:</label>
+                    <input type="number" min="1" max="5" th:field="*{unidades}">
+                </div>  
+                <div class="form-group">
+                    <label>Tamaño:</label>
                     <div class="radio-tipo">
-                        <input name="tipo" type="radio"><label>Tradicional</label>
-                        <input name="tipo" type="radio"><label>Digital</label>
+                        <input name="tipo" type="radio" th:value="A4" th:field="*{tamano}"><label>A4</label>
+                        <input name="tipo" type="radio" th:value="A5" th:field="*{tamano}"><label>A5</label>
                     </div>
+                </div>  
+                <div class="form-group">
+                    <label>Tipo:</label>
+                    <div class="radio-tipo">
+                        <input name="tipo" type="radio" th:value="mate" th:field="*{tipo}"><label>Cartulina (mate)</label>
+                        <input name="tipo" type="radio" th:value="brillante" th:field="*{tipo}"><label>Papel fotográfico (brillante)</label>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label>Comentarios adicionales:</label>
+                    <textarea placeholder="Comentarios adicionales" th:field="*{comentarios}"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="finalidad">Finalidad del encargo:</label>
-                    <div class="radio-finalidad">
-                        <div class="radio-item">
-                            <input name="finalidad" type="radio"><label>Foto de perfil</label>
-                        </div>
-                        <div class="radio-item">
-                            <input name="finalidad" type="radio"><label>Banner</label>
-                        </div>
-                        <div class="radio-item">
-                            <input name="finalidad" type="radio"><label>Logo</label>
-                        </div>
-                        <div class="radio-item">
-                            <input name="finalidad" type="radio"><label>Bandera</label>
-                        </div>
-                        <div class="radio-item">
-                            <input name="finalidad" type="radio"><label>Persona(s) / animal(es)</label>
-                        </div>
-                        <div class="radio-item">
-                            <input name="finalidad" type="radio"><label>Emote(s)</label>
-                        </div>
-                        <div class="radio-item">
-                            <input name="finalidad" type="radio"><label>Ilustración anime</label>
-                        </div>
-                        <!-- Si se marca esta opción se mostrará el campo para escribir, de lo
-                         contrario se mantendrá oculto -->
-                        <div class="radio-item">
-                            <input name="finalidad" type="radio"><label>Otro (especificar):</label>
-                        </div>
-                    </div>
-                    <input placeholder="Marcapáginas" name="otro" type="text">
-                </div>    
-                <div class="form-group">
-                    <label>Detalles del encargo:</label>
-                    <textarea placeholder="Escribe los detalles"></textarea>
-                </div>    
+                
+                <input th:field="*{precio}" hidden>
 
                 <div class="button-container">
                     <button type="submit">Enviar formulario</button>
@@ -105,7 +114,82 @@
                 </div>
             </fieldset>
         </form>
-        <p  class="abajo"><a href="#arriba">Volver arriba</a></p>
+
+        <!-- FORMULARIO PARA COMISIONES -->
+        <!--
+            <p>Si estás interesado en realizar un encargo en este apartado se proporciona la información necesaria y un formulario para este fin.</p>
+            <p>Los encargos pueden ser de distintos tipos (foto de perfil, logo, bandera...) como se ve en el apartado del Portfolio, así como en digital o en tradicional, en este último caso el envío es a cargo del comprador.
+                Sin embargo, no se realizarán dibujos de carácter ofensivo o nsfw (+18).
+            </p>
+            <p>En cuánto al precio, este puede variar, normalmente, en un rango de 5-20€, esto dependerá del tipo y complejidad del encargo. Para ello me pondré en contacto mediante el método especificado en el formulario para
+                establecer los detalles necesarios, así como tratar el precio.
+            </p>
+            <form>
+                <fieldset>
+                    <legend>Formulario</legend>
+                    <div class="form-group">
+                        <label for="nombre">Nombre o apodo:</label>
+                        <input placeholder="Iria" name="nombre" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactored">Red de contacto:</label>
+                        <input placeholder="Twitter" name="contactored" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactouser">Nombre de usuario en esa red:</label>
+                        <input placeholder="@iria_novoa" name="contactouser" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de encargo:</label>
+                        <div class="radio-tipo">
+                            <input name="tipo" type="radio"><label>Tradicional</label>
+                            <input name="tipo" type="radio"><label>Digital</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="finalidad">Finalidad del encargo:</label>
+                        <div class="radio-finalidad">
+                            <div class="radio-item">
+                                <input name="finalidad" type="radio"><label>Foto de perfil</label>
+                            </div>
+                            <div class="radio-item">
+                                <input name="finalidad" type="radio"><label>Banner</label>
+                            </div>
+                            <div class="radio-item">
+                                <input name="finalidad" type="radio"><label>Logo</label>
+                            </div>
+                            <div class="radio-item">
+                                <input name="finalidad" type="radio"><label>Bandera</label>
+                            </div>
+                            <div class="radio-item">
+                                <input name="finalidad" type="radio"><label>Persona(s) / animal(es)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input name="finalidad" type="radio"><label>Emote(s)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input name="finalidad" type="radio"><label>Ilustración anime</label>
+                            </div>
+                <h1>¡¡¡COMENTARIO!!! Si se marca esta opción se mostrará el campo para escribir, de lo
+                    contrario se mantendrá oculto </h1>
+                                <div class="radio-item">
+                                    <input name="finalidad" type="radio"><label>Otro (especificar):</label>
+                                </div>
+                            </div>
+                            <input placeholder="Marcapáginas" name="otro" type="text">
+                        </div>    
+                        <div class="form-group">
+                            <label>Detalles del encargo:</label>
+                            <textarea placeholder="Escribe los detalles"></textarea>
+                        </div>    
+                        
+                        <div class="button-container">
+                            <button type="submit">Enviar formulario</button>
+                            <button type="reset">Borrar formulario</button>
+                        </div>
+                    </fieldset>
+                </form>
+        -->
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
    

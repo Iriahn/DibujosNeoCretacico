@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{images/faviconIria.png}">
+    <title>Contacto</title>
+    <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
+    <link rel="stylesheet" th:href="@{css/comun.css}"/>
+    <link rel="stylesheet" th:href="@{css/contacto.css}"/>
+    <script th:src="@{js/comun.js}" defer></script>
+    <script th:src="@{js/navsticky.js}" defer></script>
+</head>
+<body>
+    <header>
+        <div id="cabecera">
+           <a class="logo-a" href="/index.html"><img class="logo" src="/imagen/NeoCretacico.png" alt="logo dibujos neo cretácico"></a>
+            <h1>Dibujos Neo Cretácico</h1>
+        </div>
+        <div id="progreso"></div>
+        <nav id="arriba">
+            <a href="/index.html">Principal</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="encargos.html">Encargos</a>
+            <a href="contacto.html">Contacto</a>
+            <div class="dropdown">
+                <img id="usericon" class="usericon" src="/imagen/unregisteredicon.png">
+                <div class="dropdown-content ocultar">
+                    <a href="/index.html#dibujodigital">Registrarse</a>
+                    <a href="/index.html#dibujotradicional">Iniciar sesión</a>
+                    <a href="/index.html#dibujotradicional">Salir</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1>Panel de gestión</h1>
+        <div class="redes">
+            <ul>
+                <li class="red"><a th:href="@{/dibujo/drawlist}">Dibujos</a></li>
+                <li class="red"><a th:href="@{/usuario/userlist}">Usuarios</a></li>
+            </ul>
+        </div>
+    </main>
+    <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
+   
+</body>
+</html>

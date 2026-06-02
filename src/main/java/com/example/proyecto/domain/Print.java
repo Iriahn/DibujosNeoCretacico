@@ -12,37 +12,34 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of="id")
-public class Dibujo {
+public class Print {
 
-    private Long id;
-
-    @NotNull
-    private String titulo;
+    private BigDecimal id;
 
     @NotNull
-    private String tematica;
+    private String nombre;
     
     @NotNull
-    private String descripcion;
-    
-    @NotNull
-    private String finalidad;
-
+    private String redContacto;
 
     @NotNull
-    private CategoriaEnum categoria;
+    private String redNombre;
     
     @NotNull
-    private SubCategoriaEnum subcategoria;
-    
-    @NotNull
-    private int anho;
+    private BigDecimal print;
 
     @NotNull
+    private Integer unidades;
+
+    @NotNull
+    private String tamano;
+
+    @NotNull
+    private String tipo;
+
+    private String comentarios;
+
     private BigDecimal precio;
 
-    private String imagen;
-
-    private Boolean completado;
-
+    private EstadoPrintEnum estado;
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{/principal/fragmentos.html::cabecera}"><title>Dibujo</title></head>
+  <body>
+    <header>
+        <nav th:replace="~{/principal/fragmentos.html::navegador}"></nav>    
+    </header>
+    <h1>Editar curso</h1>
+    <form method="post" action="#" th:action="@{/dibujo/editar/{id}/submit(id=${dibujo.id})}" th:object="${dibujo}" enctype="multipart/form-data">
+      <label for="id">Id: </label>
+      <input id="id" th:field="*{id}" readonly>
+      <br><br>
+      <label for="titulo">Título: </label>
+      <input name="titulo" type="text" th:field="*{titulo}">
+      <br><br>
+      <label for="tematica">Temática: </label>
+      <input name="tematica" type="text" th:field="*{tematica}">
+      <br><br>
+      <label for="descripcion">Descripción: </label>
+      <input name="descripcion" type="text" th:field="*{descripcion}">
+      <br><br>
+      <label>Estilo (Anime, Relista...): </label>
+      <select size="1" th:field="*{estilo}">
+          <div th:each="est : ${listaestilos}">
+              <option th:value="${est.estilo}" th:text="${est.estilo}"></option>
+          </div>
+      </select>
+      <br><br>
+      <label>Técnica: </label>
+      <select size="1" th:field="*{tecnica}">
+          <div th:each="tec : ${listatecnicas}">
+              <option th:value="${tec.tecnica}" th:text="${tec.tecnica}"></option>
+          </div>
+      </select>
+      <br><br>
+      <label>Año:</label>
+      <input type="number" th:field="*{anho}">
+      <br><br>
+      <label>Precio:</label>
+      <input type="number" th:field="*{precio}">
+      <br><br>
+      Adjuntar un fichero:
+      <input type="file" name="file">
+      <br><br>
+      <button type="submit">Enviar</button>
+      <a th:href="@{/public/drawlist}">Inicio</a>
+    </form>
+  </body>
+</html>

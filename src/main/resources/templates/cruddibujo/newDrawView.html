@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/principal/fragmentos.html::cabecera}"><title>Dibujo</title></head>
+<body>
+    <header>
+        <nav th:replace="~{/principal/fragmentos.html::navegador}"></nav>    
+    </header>
+    <main>
+        <h1>Nuevo dibujo</h1>
+        <form action="#" method="post" th:action="@{/dibujo/new/submit}" th:object="${dibujo}" enctype="multipart/form-data">
+            <label for="titulo">Título: </label>
+            <input name="titulo" type="text" th:field="*{titulo}">
+            <br><br>
+            <label for="tematica">Temática: </label>
+            <input name="tematica" type="text" th:field="*{tematica}">
+            <br><br>
+            <label for="descripcion">Descripción: </label>
+            <input name="descripcion" type="text" th:field="*{descripcion}">
+            <br><br>
+            <label>Estilo (Anime, Relista...): </label>
+            <select size="1" th:field="*{estilo}">
+                <option th:each="est : ${listaestilos}" th:value="${est.estilo}" th:text="${est.estilo}"></option>
+            </select>
+            <br><br>
+            <label>Técnica: </label>
+            <select size="1" th:field="*{tecnica}">
+                <div th:each="tec : ${listatecnicas}">
+                    <option th:value="${tec.tecnica}" th:text="${tec.tecnica}"></option>
+                </div>
+            </select>
+            <br><br>
+            <label>Año:</label>
+            <input type="number" th:field="*{anho}">
+            <br><br>
+            <label>Precio:</label>
+            <input type="number" th:field="*{precio}">
+            <br><br>
+            Adjuntar un fichero:
+            <input type="file" name="file">
+            <br><br>
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+    <footer>© <span th:text="${anho}">2024</span></footer>
+</body>
+</html>

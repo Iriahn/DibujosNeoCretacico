@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.proyecto.domain.Dibujo;
 import com.example.proyecto.domain.Pedido;
-import com.example.proyecto.domain.RolEnum;
+import com.example.proyecto.domain.Print;
 import com.example.proyecto.domain.Usuario;
 
 import lombok.Data;
@@ -41,8 +40,8 @@ public class AS400Service {
     
     public void crearDibujo(Dibujo dibujo) {
         // El id no es necesario porque es autogenerado
-        String sql = "INSERT INTO IRIAHN1.DIBUJOS (TITULO, TEMATICA, DESCRIPCION, FINALIDAD, ESTILO, CATEGORIA, ANHO, PRECIO, IMAGEN, COMPLETADO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, dibujo.getTitulo(), dibujo.getTematica(), dibujo.getDescripcion(), dibujo.getFinalidad(), dibujo.getEstilo(), dibujo.getCategoria(), dibujo.getAnho(), dibujo.getPrecio(), dibujo.getImagen(), dibujo.getCompletado());
+        String sql = "INSERT INTO IRIAHN1.DIBUJOS (TITULO, TEMATICA, DESCRIPCION, FINALIDAD, CATEGORIA, SUBCATEGORIA, ANHO, PRECIO, IMAGEN, COMPLETADO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, dibujo.getTitulo(), dibujo.getTematica(), dibujo.getDescripcion(), dibujo.getFinalidad(), dibujo.getCategoria(), dibujo.getSubcategoria(), dibujo.getAnho(), dibujo.getPrecio(), dibujo.getImagen(), dibujo.getCompletado());
     }
     
     @Transactional
@@ -55,7 +54,7 @@ public class AS400Service {
 
     public void actualizarDibujo(Dibujo dibujo) {
         String sql = "UPDATE IRIAHN1.DIBUJOS SET TITULO = ?, TEMATICA = ?, DESCRIPCION = ?, FINALIDAD = ?, ESTILO = ?, CATEGORIA = ?, ANHO = ?, PRECIO = ?, IMAGEN = ?, COMPLETADO = ? WHERE ID = ?";
-        jdbcTemplate.update(sql, dibujo.getTitulo(), dibujo.getTematica(), dibujo.getDescripcion(), dibujo.getFinalidad(), dibujo.getEstilo(), dibujo.getCategoria(), dibujo.getAnho(), dibujo.getPrecio(), dibujo.getImagen(), dibujo.getCompletado(), dibujo.getId());
+        jdbcTemplate.update(sql, dibujo.getTitulo(), dibujo.getTematica(), dibujo.getDescripcion(), dibujo.getFinalidad(), dibujo.getSubcategoria(), dibujo.getCategoria(), dibujo.getAnho(), dibujo.getPrecio(), dibujo.getImagen(), dibujo.getCompletado(), dibujo.getId());
     }
 
     public void eliminarDibujo(Long id) {
@@ -90,6 +89,27 @@ public class AS400Service {
         jdbcTemplate.update(sql, id);
     }
     
+    // -------------------------- Prints -------------------------------------------
+    public List<Map<String, Object>> obtenerPrints() {
+        String sql = "SELECT * FROM IRIAHN1.PRINTS";
+        return jdbcTemplate.queryForList(sql);
+    }
+
+    public List<Map<String, Object>> obtenerPrint(Long id) {
+        String sql = "SELECT * FROM IRIAHN1.PRINTS PR WHERE PR.IDPRI = ?";
+        return jdbcTemplate.queryForList(sql, id);
+    }
+
+    public void crearPrint(Print print) {
+        String sql = "INSERT INTO IRIAHN1.PRINT (NOMBRE, REDPREFERIDA, USERPREFERIDA, UNIDADES, TAMANO, TIPO, COMENTARIOS, PRECIO, ESTADO, IDDIB) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, print.getNombre(), print.getRedContacto(), print.getRedNombre(), print.getUnidades(), print.getTamano(), print.getTipo(), print.getComentarios(), print.getPrecio(), print.getEstado(), print.getPrint());
+    }
+
+    public void actualizarPrint(Print print) {//-----------------------------------
+        String sql = "UPDATE IRIAHN1.PRINTS SET NOMBRE = ?, REDPREFERIDA = ?, USERPREFERIDA = ?, UNIDADES = ?, TAMANO = ?, TIPO = ?, COMENTARIOS = ?, PRECIO = ?, ESTADO = ?, IDDIB = ? WHERE ID = ?";
+        jdbcTemplate.update(sql,  print.getNombre(), print.getRedContacto(), print.getRedNombre(), print.getUnidades(), print.getTamano(), print.getTipo(), print.getComentarios(), print.getPrecio(), print.getEstado(), print.getPrint(), print.getId());
+    }
+
     // -------------------------- Pedidos ------------------------------------------
     public List<Map<String, Object>> obtenerPedidos() {
         String sql = "SELECT * FROM IRIAHN1.PEDIDOS";
@@ -106,14 +126,14 @@ public class AS400Service {
             y ese id de dibujo es el que se le asigna al pedido
             Controller:
             - Recibo pedido, inserto dibujo, asigno id al pedido, mando aquí el pedido */
-        BigDecimal dibid = altaUltId(new Dibujo(null, null, null, null, pedido.getFinalidad(), pedido.getEstilo(), pedido.getCategoria(), LocalDate.now().getYear(), pedido.getPrecio(), null, false));
-        String sql = "INSERT INTO IRIAHN1.PEDIDOS (REDCONTACTO, USERCONTACTO, ESTADO, PRECIO, FINALIDAD, ESTILO, CATEGORIA, IDDIB, IDUSU) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, pedido.getRedContacto(), pedido.getRedNombre(), pedido.getEstado(), pedido.getPrecio(), pedido.getFinalidad(), pedido.getEstilo(), pedido.getCategoria(), dibid, pedido.getUsuario());
+        BigDecimal dibid = altaUltId(new Dibujo(null, null, null, null, pedido.getFinalidad(), pedido.getCategoria(), pedido.getSubcategoria(), LocalDate.now().getYear(), pedido.getPrecio(), null, false));
+        String sql = "INSERT INTO IRIAHN1.PEDIDOS (REDCONTACTO, USERCONTACTO, SUBCATEGORIA, PRECIO, FINALIDAD, ESTILO, CATEGORIA, IDDIB, IDUSU) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, pedido.getRedContacto(), pedido.getRedNombre(), pedido.getEstado(), pedido.getPrecio(), pedido.getFinalidad(), pedido.getSubcategoria(), pedido.getCategoria(), dibid, pedido.getUsuario());
     }
 
     public void actualizarPedido(Pedido pedido) {//-----------------------------------
-        String sql = "UPDATE IRIAHN1.PEDIDOS SET REDCONTACTO = ?, USERCONTACTO = ?, ESTADO = ?, PRECIO = ?, FINALIDAD = ?, ESTILO = ?, CATEGORIA = ?, IDDIB = ?, IDUSU = ? WHERE ID = ?";
-        jdbcTemplate.update(sql, pedido.getRedContacto(), pedido.getRedNombre(), pedido.getEstado().toString(), pedido.getPrecio(), pedido.getFinalidad(), pedido.getEstilo(), pedido.getCategoria(), pedido.getDibujo().getId(), pedido.getUsuario().getId(), pedido.getId());
+        String sql = "UPDATE IRIAHN1.PEDIDOS SET REDCONTACTO = ?, USERCONTACTO = ?, SUBCATEGORIA = ?, PRECIO = ?, FINALIDAD = ?, ESTILO = ?, CATEGORIA = ?, IDDIB = ?, IDUSU = ? WHERE ID = ?";
+        jdbcTemplate.update(sql, pedido.getRedContacto(), pedido.getRedNombre(), pedido.getEstado().toString(), pedido.getPrecio(), pedido.getFinalidad(), pedido.getSubcategoria(), pedido.getCategoria(), pedido.getDibujo().getId(), pedido.getUsuario().getId(), pedido.getId());
     }
 
 }

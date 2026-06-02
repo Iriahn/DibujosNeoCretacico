@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/principal/fragmentos.html::cabecera}"><title>Dibujo</title></head>
+<body>
+    <header>
+        <nav th:replace="~{/principal/fragmentos.html::navegador}"></nav>    
+    </header>
+    <main>
+        <form method="post" action="#" th:action="@{/public/filtrar}" th:object="${findForm}">
+            <label>Buscar por título:
+            <input type="text" th:field="*{titulo}" /></label><br>
+            Técnica:
+            <select size="1" th:field="*{tecnica}">
+                <option th:value="TODOS">TODOS</option>
+                <option th:each="tecnica : ${listatecnicas}" th:value="${tecnica.tecnica}" th:text="${tecnica.tecnica}"></option>
+            </select><br>
+            <input type="submit" value="Buscar" />
+            <input type="reset" value="Reestablecer" onclick="reestablecer();"/>
+        </form>
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Imagen</th>
+                    <th>Título</th>
+                    <th>Temática</th>
+                    <th>Puntuación</th>
+                    <th>Precio</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dibujo : ${listadibujos}">
+                    <td th:text="${dibujo.id}">Id</td>
+                    <td><img th:src="'/files/' + ${dibujo.imagen}" style="width: 50px;"></td>
+                    <td><a th:href="@{/dibujo/{id}(id=${dibujo.id})}" th:text="${dibujo.titulo}">Título</a></td>
+                    <td th:text="${dibujo.tematica}">Temática</td>
+                    <td th:text="${dibujo.puntuacion}">Puntuación</td>
+                    <td th:text="${dibujo.precio}">Precio</td>
+                    <td><a th:href="@{/dibujo/editar/{id}(id=${dibujo.id})}">Editar</a></td>
+                    <td><a th:href="@{/dibujo/borrar/{id}(id=${dibujo.id})}">Borrar</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/dibujo/new}"><button type="button">Nuevo dibujo</button></a>
+        <br><br>
+        <p th:text="${error}"></p>
+    </main>
+    <script>
+        function reestablecer(){
+            window.location.href = "/public/reestablecer";
+        }
+    </script>
+</body>
+</html>

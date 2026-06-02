@@ -94,6 +94,20 @@ img.logo{
   max-height: 8rem;
 }
 
+  /* ------------- Tabla ------------- */
+table, td, th{
+  border-collapse: collapse;
+  border: 1px solid var(--second-color);
+}
+table{
+  margin: 1rem;
+}
+td, th{
+  background-color: var(--third-color);
+  padding: 0.5rem;
+}
+  /* ------------------------------------- */
+
   /* ------------- Formulario ------------- */
 form{
   display: flex;
@@ -213,7 +227,7 @@ footer{
 }
 .usericonhover{
   height: 2.5rem;
-  content: url("/imagen/unregisterediconhover.png");
+  content: url("@{images/unregisterediconhover.png}");
 }
 .logo-a{
   margin: auto;
@@ -240,7 +254,7 @@ footer{
   z-index: 100;
 }
 .espacio{
-  margin-top: 5.21rem;
+  margin-top: 2.7rem;
 }
 
 /* Media Query */

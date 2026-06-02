@@ -9,10 +9,6 @@ ul{
     list-style: none;
     text-align: left;
 }
-footer{
-    position: absolute;
-    bottom: 0;
-}
 
 /* Identifiers */
 
@@ -31,4 +27,7 @@ footer{
 }
 .red{
     padding: 0.125rem;
+}
+.avatar2{
+	width: 20rem;
 }

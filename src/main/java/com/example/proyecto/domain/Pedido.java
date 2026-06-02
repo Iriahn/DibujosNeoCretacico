@@ -18,20 +18,23 @@ public class Pedido {
     private Long id;
 
     @NotNull
+    private String nombre;
+
+    @NotNull
     private String redContacto;
 
     @NotNull
     private String redNombre;
     
     @NotNull
-    private EstadoEnum estado;
+    private EstadoPedEnum estado;
     
     @NotNull
     private BigDecimal precio;
 
     @NotNull
     @ManyToOne
-    private EstiloEnum estilo;
+    private SubCategoriaEnum subcategoria;
 
     @NotNull
     @ManyToOne
@@ -44,12 +47,12 @@ public class Pedido {
 
     private Usuario usuario;
 
-    public Pedido(String redcont, String rednom, EstadoEnum estado, EstiloEnum estilo, CategoriaEnum categoria, String finalidad, Dibujo dibujo, Usuario usuario){
+    public Pedido(String redcont, String rednom, EstadoPedEnum estado, SubCategoriaEnum subcategoria, CategoriaEnum categoria, String finalidad, Dibujo dibujo, Usuario usuario){
         this.redContacto = redcont;
         this.redNombre = rednom;
         this.estado = estado;
         this.precio = new BigDecimal(0);
-        this.estilo = estilo;
+        this.subcategoria = subcategoria;
         this.categoria = categoria;
         this.finalidad = finalidad;
         this.dibujo = dibujo;

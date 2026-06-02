@@ -1,0 +1,20 @@
+/* Elements */
+table{
+    justify-self: center;
+}
+tr td{
+    background-color: rgb(152,219,229, 0.5);
+}
+
+/* Identifiers */
+
+/* Classes */
+.titulotabla{
+    text-align: center;
+}
+.tablavacio{
+    text-align: center;
+    background-color: var(--main-color);
+    border-top: hidden;
+    border-left: hidden;
+}

@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/imagen/faviconIria.png">
+    <link rel="icon" th:href="@{images/faviconIria.png}">
     <title>Portfolio</title>
-    <link rel="stylesheet" href="/estilos/reseteo.css"/>
-    <link rel="stylesheet" href="/estilos/comun.css"/>
-    <link rel="stylesheet" href="/estilos/portfolio.css"/>
-    <script src="/scripts/comun.js" defer></script>
-    <script src="/scripts/portfolio.js" defer></script>
+    <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
+    <link rel="stylesheet" th:href="@{css/comun.css}"/>
+    <link rel="stylesheet" th:href="@{css/portfolio.css}"/>
+    <script th:src="@{js/comun.js}" defer></script>
+    <script th:src="@{js/portfolio.js}" defer></script>
 </head>
 <body>
     <header>
         <div id="cabecera">
-            <a class="logo-a" href="/index.html"><img class="logo" src="/imagen/NeoCretacico.png" alt="logo dibujos neo cretácico"></a>
+            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
-        <div id="progreso"></div>
+        <!-- <div id="progreso"></div> -->
         <nav id="arriba">
-            <a href="/index.html">Principal</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="encargos.html">Encargos</a>
-            <a href="contacto.html">Contacto</a>
+            <a th:href="@{/}">Principal</a>
+            <a th:href="@{/portfolio}">Portfolio</a>
+            <a th:href="@{/encargos}">Encargos</a>
+            <a th:href="@{/contacto}">Contacto</a>
             <div class="dropdown">
-                <img id="usericon" class="usericon" src="/imagen/unregisteredicon.png">
+                <img id="usericon" class="usericon" src="@{images/unregisteredicon.png}">
                 <div class="dropdown-content ocultar">
-                    <a href="/index.html#dibujodigital">Registrarse</a>
-                    <a href="/index.html#dibujotradicional">Iniciar sesión</a>
-                    <a href="/index.html#dibujotradicional">Salir</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
+                    <a sec:authorize="hasAnyRole('MANAGER', 'ADMIN')" th:href="@{/gestionar}">Gestionar</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/usuario/register}">Registrarse</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Iniciar sesión</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Salir</a>
                 </div>
             </div>
         </nav>

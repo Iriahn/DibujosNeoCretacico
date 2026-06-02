@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.example.proyecto.domain.Usuario;
-import com.example.proyecto.services.DibujoService;
+import com.example.proyecto.services.MainService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-  private final DibujoService dibujoService;
+  private final MainService dibujoService;
 
  @Override
  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

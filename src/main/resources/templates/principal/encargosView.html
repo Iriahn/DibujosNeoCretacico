@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{images/faviconIria.png}">
+    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
     <title>Encargos</title>
     <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
     <link rel="stylesheet" th:href="@{css/comun.css}"/>
     <link rel="stylesheet" th:href="@{css/encargos.css}"/>
     <script th:src="@{js/comun.js}" defer></script>
     <script th:src="@{js/navsticky.js}" defer></script>
+    <script th:src="@{js/encargos.js}" defer></script>
 </head>
 <body>
     <header>
         <div id="cabecera">
-            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
+            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
         <!-- <div id="progreso"></div> -->
@@ -24,7 +25,7 @@
             <a th:href="@{/encargos}">Encargos</a>
             <a th:href="@{/contacto}">Contacto</a>
             <div class="dropdown">
-                <img id="usericon" class="usericon" src="@{images/unregisteredicon.png}">
+                <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
                 <div class="dropdown-content ocultar">
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
@@ -71,16 +72,15 @@
                 </div>
                 <div class="form-group">
                     <label for="contactored">Red de contacto:</label>
-                    <input placeholder="Twitter" name="contactored" type="text" th:field="*{redContacto}">
+                    <input placeholder="Twitter" id="contactored" name="contactored" type="text" th:field="*{redContacto}">
                 </div>
                 <div class="form-group">
                     <label for="contactouser">Nombre de usuario en esa red:</label>
-                    <input placeholder="@iria_novoa" name="contactouser" type="text" th:field="*{redNombre}">
+                    <input placeholder="@iria_novoa" id="contactouser" name="contactouser" type="text" th:field="*{redNombre}">
                 </div>
                 <div class="form-group">
-                    <label>Print a encargar:</label>
+                    <label for="printdibujo">Print a encargar:</label>
                     <select id="printdibujo" size="1" th:field="*{print}">
-                        <option th:value="elige">Elige...</option>
                     </select>
                 </div>  
                 <div class="form-group">

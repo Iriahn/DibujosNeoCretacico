@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{images/faviconIria.png}">
+    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
     <title>Portfolio</title>
     <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
     <link rel="stylesheet" th:href="@{css/comun.css}"/>
@@ -14,7 +14,7 @@
 <body>
     <header>
         <div id="cabecera">
-            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
+            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
         <!-- <div id="progreso"></div> -->
@@ -24,7 +24,7 @@
             <a th:href="@{/encargos}">Encargos</a>
             <a th:href="@{/contacto}">Contacto</a>
             <div class="dropdown">
-                <img id="usericon" class="usericon" src="@{images/unregisteredicon.png}">
+                <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
                 <div class="dropdown-content ocultar">
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
@@ -63,6 +63,7 @@
                                 <li><a class="nivel-dos" href="#naruto">Naruto</a></li>
                             </ul>
                         </li>
+                        <li><a class="nivel-uno" href="#regalos">Regalos</a></li>
                     </span>
                 </ul>
             </nav>
@@ -74,228 +75,62 @@
             <section class="digital">
                 <br>
                 <h2 id="digital">Digital</h2>
-                <section>
-                    <h3 id="anime">Anime</h3>
-                    <article>
-                        <img class="photo" alt="dibujo de la supertécnica fuego total de inazuma eleven" src="/imagen/DibujoDigital/Anime/FuegoTotal.png">
-                        <div class="info">
-                            <h4>Fuego Total</h4>
-                            <p>Fuego total es una supertécnica originalmente realizada en Inazuma Eleven 3 por Austin, Axel y Xavier.
-                                En este encargo se pidió a los personajes Sue, Axel y Xene, con el patrocinador Terra Mítica en la camiseta.
-                            </p>
-                            <p class="cost">Precio: 15€</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="dibujo de kakashi hatake de naruto" src="/imagen/DibujoDigital/Anime/Kakashi.jpg">
-                        <div class="info">
-                            <h4>Kakashi Hatake</h4>
-                            <p>Kakashi Hatake es un personaje de anime de Naruto, en este dibujo la intención fue probar cosas nuevas, siendo así el
-                                perfilado imperfecto con distintos grosores, igual que los colores y las sombras con el color negro.
-                            </p>
-                        </div>
-                    </article>
+                <section id="sanime">
+                    <!-- <h3 id="anime">Anime</h3> -->
                 </section>
-                <section>
-                    <h3 id="varios">Varios</h3>
-                    <article>
-                        <img class="photo" alt="dibujo de los avatares de pokemon de una pareja" src="/imagen/DibujoDigital/Varios/DibujoPareja.png">
-                        <div class="info">
-                            <h4>Pareja</h4>
-                            <p>Este encargo lo pidió una persona como regalo a su novio, siendo sus personajes de Pokemon Escarlata con la simbología 
-                                de una amor ball en el medio.
-                            </p>
-                            <p class="cost">Precio: 15€</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="dibujo de un chico con su equipo pokemon tumbados en la hierba" src="/imagen/DibujoDigital/Varios/Pokemon.png">
-                        <div class="info">
-                            <h4>Equipo Pokemon</h4>
-                            <p>El encargo se basa en la idea de la persona que lo pidió junto a su equipo pokemon, en un ambiente muy tranquilo.
-                            </p>
-                            <p class="cost">Precio: 25€</p>
-                        </div>
-                    </article>
+                <section id="slogos">    
+                    <!-- <h3 id="logos">Logos</h3> -->
                 </section>
-                <section>
-                    <h3 id="logos">Logos</h3>
-                    <article>
-                        <img class="photo" alt="dibujo de una z con estilo del pokemon zazian" src="/imagen/DibujoDigital/Logos/Logo-Zazian-Transparente.png">
-                        <div class="info">
-                            <h4>Zazian</h4>
-                            <p>Este logo está inspirado en el pokemon zazian y pensado para usarse como foto de perfil en redes como Twitter y Twitch.
-                            </p>
-                            <p class="cost">Precio: 10€</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="conjunto de cuatro logos con 24/7 delante y edificios al fondo" src="/imagen/DibujoDigital/Logos/LogoRoleplay.png">
-                        <div class="info">
-                            <h4>Roleplay 24/7</h4>
-                            <p>Este logo se pidió en varias versiones para un Roleplay de GTA V llamado 24/7
-                            </p>
-                            <p class="cost">Precio: 15€</p>
-                        </div>
-                    </article>
+                <section id="sbanderas">
+                    <!-- <h3 id="banderas">Banderas</h3> -->
                 </section>
-                <section>
-                    <h3 id="banderas">Banderas</h3>
-                    <article>
-                        <img class="photo" alt="bandera personalizada al estilo one piece" src="/imagen/DibujoDigital/Banderas/BanderaOnePiece.png">
-                        <div class="info">
-                            <h4>One Piece</h4>
-                            <p>Esta es una bandera personalizada con una calavera estilo One Piece semejante a la persona, los colores de su perro y los tornillos por su personaje de 
-                                anime favorito.
-                            </p>
-                            <p class="cost">Precio: 10€</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="bandera del equipo royal academy de inazuma eleven" src="/imagen/DibujoDigital/Banderas/BanderaRoyalAcademy.png">
-                        <div class="info">
-                            <h4>Royal Academy</h4>
-                            <p>Esta bandera  fue diseñada para el equipo Royal Academy del anime Inazuma Eleven empleando los colores de unos estandartes que usan en los primeraos capítulos.
-                            </p>
-                            <p class="cost">Precio: 10€</p>
-                        </div>
-                    </article>
-                </section>
-                <section>
-                    <h3 id="personas">Personas</h3>
-                    <article>
-                        <img class="photo" alt="dibujo de tres gatos, dos fallecidos, y su dueña en el medio" src="/imagen/DibujoDigital/Personas/GatosAndrea.png">
-                        <div class="info">
-                            <h4>Gatos</h4>
-                            <p>Este dibujo fue un regalo para una amiga de sus antiguos gatos y su nueva gata con ella en el medio.
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="dibujo de una chica al estilo inazuma junto a nathan swift" src="/imagen/DibujoDigital/Personas/Nadex.png">
-                        <div class="info">
-                            <h4>Nadex</h4>
-                            <p>Este dibujo fue un regalo a una amiga en estilo Inazuma junto a su personaje favorito para levantarle un poco el ánimo.
-                            </p>
-                        </div>
-                    </article>
+                <section id="spersonas">
+                    <!-- <h3 id="personas">Personas</h3> -->
                 </section>
                 <section>
                     <h3 id="emotes">Emotes</h3>
                     <table>
                         <tr>
-                            <td colspan="3"><img class="fototabla" alt="emote de un hacha clavada en el suelo" src="/imagen/DibujoDigital/Emotes/Hacha.png"></td>
+                            <td colspan="3"><img class="fototabla" alt="emote de un hacha clavada en el suelo" th:src="@{/images/emotes/DgeHacha.png}"></td>
                         </tr>
                         <tr>
-                            <td><img class="fototabla" alt="dibujo de charmander con una hoguera" src="/imagen/DibujoDigital/Emotes/004Charmander.png"></td>
-                            <td><img class="fototabla" alt="dibujo de charmeleon con una chupa y gafas de sol" src="/imagen/DibujoDigital/Emotes/005Charmeleon.png"></td>
-                            <td><img class="fototabla" alt="dibujo de charizard versión chorizo" src="/imagen/DibujoDigital/Emotes/006Chorizard.png"></td>
+                            <td><img class="fototabla" alt="dibujo de charmander con una hoguera" th:src="@{/images/emotes/Dge004Charmander.png}"></td>
+                            <td><img class="fototabla" alt="dibujo de charmeleon con una chupa y gafas de sol" th:src="@{/images/emotes/Dge005Charmeleon.png}"></td>
+                            <td><img class="fototabla" alt="dibujo de charizard versión chorizo" th:src="@{/images/emotes/Dge006Chorizard.png}"></td>
                         </tr>
                         <tr>
-                            <td><img class="fototabla" alt="dibujo de bulbasaur sobre una valla" src="/imagen/DibujoDigital/Emotes/001Bulbasaur.png"></td>
-                            <td><img class="fototabla" alt="dibujo de squirtle con la palabra stop" src="/imagen/DibujoDigital/Emotes/007Squirtle.png"></td>
-                            <td><img class="fototabla" alt="dibujo de wartortle apagando la luz" src="/imagen/DibujoDigital/Emotes/008Wartortle.png"></td>
+                            <td><img class="fototabla" alt="dibujo de bulbasaur sobre una valla" th:src="@{/images/emotes/Dge001Bulbasaur.png}"></td>
+                            <td><img class="fototabla" alt="dibujo de squirtle con la palabra stop" th:src="@{/images/emotes/Dge007Squirtle.png}"></td>
+                            <td><img class="fototabla" alt="dibujo de wartortle apagando la luz" th:src="@{/images/emotes/Dge008Wartortle.png}"></td>
                         </tr>
                     </table>
+                </section>
+                <section id="svarios">
+                    <!-- <h3 id="varios">Varios</h3> -->
                 </section>
             </section>
             <section class="tradicional">
                 <br>
                 <h2 id="tradicional">Tradicional</h2>
-                <section>
-                    <h3 id="jk">Jujutsu Kaisen</h3>
-                    <article>
-                        <img class="photo" alt="dibujo de jujutsu kaisen en el arco de shibuya" src="/imagen/DibujoTradicional/JKbienmal.jpg">
-                        <div class="info">
-                            <h4>Accidente en Shibuya</h4>
-                            <p>Este dibujo es a modo resumen de lo ocurrido en el arco de Shibuya de Jujutsu Kaisen, estando a color las maldiciones y en blanco y negro los hechiceros.
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="dibujo del panel de manga mítico de Gojo y Jogo" src="/imagen/DibujoTradicional/JKmanga.jpg">
-                        <div class="info">
-                            <h4>Débil</h4>
-                            <p>Este dibujo es el famoso panel de Jujutsu kaisen en el que Gojo le dice a Jogo que es débil.
-                            </p>
-                        </div>
-                    </article>
+                <section id="sjk">
+                    <!-- <h3 id="jk">Jujutsu Kaisen</h3> -->
                 </section>
-                <section>
-                    <h3 id="tpn">The Promised Neverland</h3>
-                    <article>
-                        <img class="photo" alt="dibujo de the promised neverland del arco de goldy pond" src="/imagen/DibujoTradicional/TPNGoldypond.jpg">
-                        <div class="info">
-                            <h4>Goldy Pond</h4>
-                            <p>Este dibujo resume a groso modo los personajes más relevantes, principalmente antagonistas, del arco de Goldy Pond del manga de The Promised Neverland.
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="dibujo de navidad de the promised neverland" src="/imagen/DibujoTradicional/TPNnavidad.jpg">
-                        <div class="info">
-                            <h4>Navidad</h4>
-                            <p>Dibujo hecho para un concurso de postales de navidad. Los resultados se pueden ver <a href="https://anparaiola.wordpress.com/2022/12/21/ganadores-concurso-de-postais-de-nadal-2022/" target="_blank">aquí</a>.
-                            </p>
-                        </div>
-                    </article>
+                <section id="stpn">
+                    <!-- <h3 id="tpn">The Promised Neverland</h3> -->
                 </section>
-                <section>
-                    <h3 id="bl">Blue Lock</h3>
-                    <article>
-                        <img class="photo" alt="dibujo de isagi de blue lock a partir de una mancha de café" src="/imagen/DibujoTradicional/BLcafe.jpg">
-                        <div class="info">
-                            <h4>Isagi Café</h4>
-                            <p>Este dibujo se hizo a partir de una mancha de café que sería lo que está pintado de color.
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="dibujo de un panel de blue lock de isagi y yukimura sobre papel negro" src="/imagen/DibujoTradicional/BLblanco.jpg">
-                        <div class="info">
-                            <h4>Blanco y Negro</h4>
-                            <p>Este dibujo está realizado sobre papel negro con materiales blancos como pintura, bolígrafo de gel, lápiz y tiza, posteriormente fijada.
-                            </p>
-                        </div>
-                    </article>
+                <section id="sbl">
+                    <!-- <h3 id="bl">Blue Lock</h3> -->
                 </section>
-                <section>
-                    <h3 id="ie">Inazuma Eleven</h3>
-                    <article>
-                        <img class="photo" alt="dibujo simulando un partido entre el raimon de inazuma eleven y el equipo z de blue lock" src="/imagen/DibujoTradicional/IExBL.jpg">
-                        <div class="info">
-                            <h4>Inazuma Eleven x Blue Lock</h4>
-                            <p>Este dibujo semeja una colaboración entre dos populares animes de fútbol en un partido que enfrenta a ambos protagonistas.
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="dibujo de cadence soundtown de inazuma eleven con rotuladores acuarelables" src="/imagen/DibujoTradicional/IEcadence.jpg">
-                        <div class="info">
-                            <h4>Cadence</h4>
-                            <p>Este dibujo está realizado con rotuladores a base de alcohol y acuarelables con la idea de probar cosas nuevas sobre el personaje de Cadence Soundtown de Inazuma Eleven.
-                            </p>
-                        </div>
-                    </article>
+                <section id="sie">
+                    <!-- <h3 id="ie">Inazuma Eleven</h3> -->
                 </section>
-                <section>
-                    <h3 id="naruto">Naruto</h3>
-                    <article>
-                        <img class="photo" alt="dibujo de naruto pequeño bajo la lluvia en la puerta de ichiraku ramen" src="/imagen/DibujoTradicional/Nnarutochikito.jpg">
-                        <div class="info">
-                            <h4>Naruto pequeño</h4>
-                            <p>Este dibujo presenta a Naruto de niño en la entrada de Ichiraku ramen, realizado con rotuladores acuarelables principalmente.
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <img class="photo" alt="dibujo del antiguo equipo 7 de minato namikaze" src="/imagen/DibujoTradicional/Nequipo7.jpg">
-                        <div class="info">
-                            <h4>Equipo 7</h4>
-                            <p>Este dibujo presenta al antiguo equipo 7 liderado por Minato Namikaze.
-                            </p>
-                        </div>
-                    </article>
+                <section id="snaruto">
+                    <!-- <h3 id="naruto">Naruto</h3> -->
+                </section>
+            </section>
+            <section>
+                <section id="sregalos">
+                    <!-- <h3 id="regalos">Regalos</h3> -->
                 </section>
             </section>
             <p class="abajo"><a href="#arriba">Volver arriba</a></p>

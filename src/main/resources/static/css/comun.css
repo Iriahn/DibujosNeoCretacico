@@ -143,7 +143,7 @@ fieldset{
 label{
   margin-bottom: 0.3rem;
 }
-input[type="text"], textarea{
+input[type="text"], input[type="number"], select, textarea{
   background-color: var(--main-color);
   border: 1px solid var(--second-color);
   padding: 0.5rem;
@@ -203,7 +203,7 @@ footer{
 .dropdown-content {
   position: absolute;
   margin-top: -1px;
-  margin-left: -23px;
+  margin-left: -37px;
   padding-top: 2px;
   width: 6.9rem;
   box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
@@ -227,7 +227,7 @@ footer{
 }
 .usericonhover{
   height: 2.5rem;
-  content: url("@{images/unregisterediconhover.png}");
+  content: url("../images/comun/unregisterediconhover.png");
 }
 .logo-a{
   margin: auto;

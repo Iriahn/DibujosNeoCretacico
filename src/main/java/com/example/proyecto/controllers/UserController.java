@@ -67,7 +67,7 @@ public class UserController {
         return "crudusuario/autoUserNewView";
     }
 
-    @PostMapping("/usuario/autoUser/submit")
+    @PostMapping("/usuario/register/submit")
     public String showAutoSubmit(@Valid @ModelAttribute("usuarioForm") Usuario nuevoUsuario, BindingResult bindingResult) {
         
         nuevoUsuario.setRol(RolEnum.USER);
@@ -120,7 +120,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/usuario/borrarUser/{id}")
+    @GetMapping("/usuario/borrar/{id}")
     public String showDeleteUser(@PathVariable Long id) {
         try{
             // usuarioService.borrarUsu(id);

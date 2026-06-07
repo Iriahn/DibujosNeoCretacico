@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{images/faviconIria.png}">
+    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
     <title>Contacto</title>
     <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
     <link rel="stylesheet" th:href="@{css/comun.css}"/>
@@ -14,7 +14,7 @@
 <body>
     <header>
         <div id="cabecera">
-            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
+            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
         <!-- <div id="progreso"></div> -->
@@ -24,7 +24,7 @@
             <a th:href="@{/encargos}">Encargos</a>
             <a th:href="@{/contacto}">Contacto</a>
             <div class="dropdown">
-                <img id="usericon" class="usericon" src="@{images/unregisteredicon.png}">
+                <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
                 <div class="dropdown-content ocultar">
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>

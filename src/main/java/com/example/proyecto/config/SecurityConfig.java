@@ -35,9 +35,12 @@ public class SecurityConfig {
             .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
         http.authorizeHttpRequests(
             auth -> auth
-            .requestMatchers("/**").permitAll()
+            .requestMatchers("/", "/index", "/home", "/portfolio",  "/portafolio",  "/drawlist", "/encargo",  "/encargos",  "/comision",  "/comission", "/contacto", "/contact", "/files/**", "/accessError", "/usuario/register/**", "/usuario/changepassword/**", "/api400/**").permitAll()
+            .requestMatchers("/print/**").hasAnyRole("ADMIN", "MANAGER", "USER")
+            .requestMatchers("/gestionar", "/dibujo/**", "/usuario/**").hasAnyRole("ADMIN", "MANAGER")
+            .requestMatchers("/prints/**").hasRole("MANAGER")
             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // para rutas: /css, /js /images
-            .requestMatchers(PathRequest.toH2Console()).hasRole("ADMIN")
+            .requestMatchers(PathRequest.toH2Console()).hasAnyRole("ADMIN", "MANAGER")
             .anyRequest().authenticated())
             .formLogin(formLogin -> formLogin
                 .defaultSuccessUrl("/", true)

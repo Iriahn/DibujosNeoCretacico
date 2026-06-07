@@ -30,21 +30,22 @@ import lombok.RequiredArgsConstructor;
 public class MainController {
 
     private final FileService fileService;
-    private final MainService dibujoService;
+    private final MainService mainService;
     private String txterror;
 
     @GetMapping({"/index", "/home", "/"})
-    public String index(@RequestParam(required = false) String usuario, Model model) {
+    public String index() {
         return "principal/indexView";
     }
 
     @GetMapping({"/portfolio", "/portafolio", "/drawlist"})
-    public String galeria(Model model) {
+    public String galeria() {
         return "principal/portfolioView";
     }
     
     @GetMapping({"/encargo", "/encargos", "/comision", "/comission"})
     public String encargos(Model model) {
+        model.addAttribute("print", new Print());
         return "principal/encargosView";
     }
 
@@ -66,7 +67,7 @@ public class MainController {
                 else
                     unidad = 7l;
                 print.setPrecio(new BigDecimal(unidad*print.getUnidades()));
-                
+                // dar de alta print
             }
         }catch(RuntimeException ex){
             txterror = ex.getMessage();

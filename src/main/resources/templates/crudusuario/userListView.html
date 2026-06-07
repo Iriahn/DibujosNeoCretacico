@@ -1,9 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="~{/principal/fragmentos.html::cabecera}"><title>Usuario</title></head>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
+    <title>Dibujos Neo Cretácico</title>
+    <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
+    <link rel="stylesheet" th:href="@{css/comun.css}"/>
+    <link rel="stylesheet" th:href="@{css/principal.css}"/>
+    <script th:src="@{js/comun.js}" defer></script>
+    <script th:src="@{js/navsticky.js}" defer></script>
+</head>
 <body>
     <header>
-        <nav th:replace="~{/principal/fragmentos.html::navegador}"></nav>    
+      <div id="cabecera">
+          <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
+          <h1>Dibujos Neo Cretácico</h1>
+      </div>
+      <!-- <div id="progreso"></div> -->
+      <nav id="arriba">
+          <a th:href="@{/}">Principal</a>
+          <a th:href="@{/portfolio}">Portfolio</a>
+          <a th:href="@{/encargos}">Encargos</a>
+          <a th:href="@{/contacto}">Contacto</a>
+          <div class="dropdown">
+              <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
+              <div class="dropdown-content ocultar">
+                  <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
+                  <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
+                  <a sec:authorize="hasAnyRole('MANAGER', 'ADMIN')" th:href="@{/gestionar}">Gestionar</a>
+                  <a sec:authorize="!isAuthenticated()" th:href="@{/usuario/register}">Registrarse</a>
+                  <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Iniciar sesión</a>
+                  <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Salir</a>
+              </div>
+          </div>
+      </nav>
     </header>
     <main>
         <table>
@@ -26,5 +57,6 @@
         <br><br>
         <p th:text="${error}"></p>
     </main>
+    <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
 </body>
 </html>

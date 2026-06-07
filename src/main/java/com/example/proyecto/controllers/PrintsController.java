@@ -27,7 +27,7 @@ public class PrintsController {
     private String txterror;
     private String imagen;
 
-    @GetMapping("/dibujo/drawlist")
+    @GetMapping("/prints/list")
     public String galeria(Model model) {
         model.addAttribute("findForm", new Dibujo());
         model.addAttribute("listatecnicas", dibujoService.obtenerCategorias());
@@ -36,36 +36,8 @@ public class PrintsController {
         txterror = null;
         return "cruddibujo/drawListView";
     }
-
-    @GetMapping("/dibujo/new")
-    public String nuevodibujo(Model model) {
-        model.addAttribute("dibujo", new Dibujo());
-        model.addAttribute("anho", dibujoService.anho());
-        model.addAttribute("listaestilos", dibujoService.obtenerEstilos());
-        model.addAttribute("listatecnicas", dibujoService.obtenerCategorias());
-        return "cruddibujo/newView";
-    }
-
-    @PostMapping("/dibujo/new/submit")
-    public String index(@Valid Dibujo dibujo, BindingResult bindingresult, @RequestParam MultipartFile file) {
-        try{
-            if(bindingresult.hasErrors())
-                txterror = "Error en el procesado";
-            else{
-                // dibujoService.anadir(dibujo);
-                String storedFileName = fileService.storeFile(file, Long.toString(dibujo.getId()));
-                dibujo.setImagen(storedFileName);
-                // dibujoService.editar(dibujo);
-            }
-        }catch(RuntimeException ex){
-            txterror = ex.getMessage();
-        }catch(Exception e){
-            txterror = e.getMessage();
-        }
-        return "redirect:/public/drawlist";
-    }
     
-    @GetMapping("/dibujo/editar/{id}")
+    @GetMapping("/prints/editar/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         try {
             // Dibujo dibujo = dibujoService.obtenerPorId(id);
@@ -81,7 +53,7 @@ public class PrintsController {
         }
     }
 
-    @PostMapping("/dibujo/editar/{id}/submit")
+    @PostMapping("/prints/editar/{id}/submit")
     public String showEditSubmit(@PathVariable Long id, @Valid Dibujo dibujo, BindingResult bindingResult, @RequestParam MultipartFile file) {
         try{
             if (bindingResult.hasErrors()) {
@@ -104,7 +76,7 @@ public class PrintsController {
         }
     }
 
-    @GetMapping("/dibujo/borrar/{id}")
+    @GetMapping("/prints/borrar/{id}")
     public String showDelete(@PathVariable Long id) {
         try{
             // dibujoService.borrar(id);

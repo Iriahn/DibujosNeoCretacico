@@ -36,7 +36,7 @@ public class AS400Controller {
 
     // 2. CREAR UN USUARIO (POST)
     // Se envía un JSON: {"id": "100", "nombre": "Carlos"}
-    @PostMapping("/api/usuarios")
+    @PostMapping("/api400/usuarios")
     public ResponseEntity<String> crear(@RequestBody Map<String, String> body) {
         try {
             as400ServicePrueba.crearUsuario(body.get("id"), body.get("nombre"));
@@ -47,14 +47,14 @@ public class AS400Controller {
     }
 
     // 3. ACTUALIZAR UN USUARIO (PUT)
-    @PutMapping("/api/usuarios/{id}")
+    @PutMapping("/api400/usuarios/{id}")
     public ResponseEntity<String> actualizar(@PathVariable String id, @RequestBody Map<String, String> body) {
         as400ServicePrueba.actualizarNombre(id, body.get("nombre"));
         return ResponseEntity.ok("Usuario actualizado");
     }
 
     // 4. ELIMINAR UN USUARIO (DELETE)
-    @DeleteMapping("/api/usuarios/{id}")
+    @DeleteMapping("/api400/usuarios/{id}")
     public ResponseEntity<String> eliminar(@PathVariable String id) {
         as400ServicePrueba.eliminarUsuario(id);
         return ResponseEntity.ok("Usuario eliminado");

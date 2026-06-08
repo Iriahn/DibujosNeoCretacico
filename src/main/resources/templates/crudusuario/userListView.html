@@ -7,7 +7,7 @@
     <title>Dibujos Neo Cretácico</title>
     <link rel="stylesheet" th:href="@{/css/reseteo.css}"/>
     <link rel="stylesheet" th:href="@{/css/comun.css}"/>
-    <link rel="stylesheet" th:href="@{/css/userlist.css}"/>
+    <link rel="stylesheet" th:href="@{/css/list.css}"/>
     <script th:src="@{/js/comun.js}" defer></script>
     <script th:src="@{/js/navsticky.js}" defer></script>
     <script th:src="@{/js/usuariolista.js}" defer></script>
@@ -38,6 +38,9 @@
       </nav>
     </header>
     <main>
+        <div class="button-container">
+            <a th:href="@{/usuario/newUser}"><button type="button">Nuevo usuario</button></a>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -50,9 +53,6 @@
                 
             </tbody>
         </table>
-        <div class="button-container">
-            <a th:href="@{/usuario/newUser}"><button type="button">Nuevo usuario</button></a>
-        </div>
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
 </body>

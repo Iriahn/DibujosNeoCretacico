@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
+    <link rel="icon" th:href="@{/images/comun/faviconIria.png}">
     <title>Dibujos Neo Cretácico</title>
-    <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
-    <link rel="stylesheet" th:href="@{css/comun.css}"/>
-    <script th:src="@{js/comun.js}" defer></script>
-    <script th:src="@{js/navsticky.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/reseteo.css}"/>
+    <link rel="stylesheet" th:href="@{/css/comun.css}"/>
+    <link rel="stylesheet" th:href="@{/css/list.css}"/>
+    <script th:src="@{/js/comun.js}" defer></script>
+    <script th:src="@{/js/navsticky.js}" defer></script>
+    <script th:src="@{/js/dibujolista.js}" defer></script>
+    <style>
+        .photolist{
+            width: 10rem;
+        }
+        td{
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div id="cabecera">
-            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
+            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{/images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
         <!-- <div id="progreso"></div> -->
@@ -23,7 +34,7 @@
             <a th:href="@{/encargos}">Encargos</a>
             <a th:href="@{/contacto}">Contacto</a>
             <div class="dropdown">
-                <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
+                <img id="usericon" class="usericon" th:src="@{/images/comun/unregisteredicon.png}">
                 <div class="dropdown-content ocultar">
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
@@ -36,18 +47,10 @@
         </nav>
     </header>
     <main>
-        <form method="post" action="#" th:action="@{/public/filtrar}" th:object="${findForm}">
-            <label>Buscar por título:
-            <input type="text" th:field="*{titulo}" /></label><br>
-            Técnica:
-            <select size="1" th:field="*{tecnica}">
-                <option th:value="TODOS">TODOS</option>
-                <option th:each="tecnica : ${listatecnicas}" th:value="${tecnica.tecnica}" th:text="${tecnica.tecnica}"></option>
-            </select><br>
-            <input type="submit" value="Buscar" />
-            <input type="reset" value="Reestablecer" onclick="reestablecer();"/>
-        </form>
-        <br><br>
+        <p th:text="${error}"></p>
+        <div class="button-container">
+            <a th:href="@{/dibujo/new}"><button type="button">Nuevo dibujo</button></a>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -55,34 +58,16 @@
                     <th>Imagen</th>
                     <th>Título</th>
                     <th>Temática</th>
-                    <th>Puntuación</th>
                     <th>Precio</th>
                     <th>Editar</th>
                     <th>Borrar</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr th:each="dibujo : ${listadibujos}">
-                    <td th:text="${dibujo.id}">Id</td>
-                    <td><img th:src="'/files/' + ${dibujo.imagen}" style="width: 50px;"></td>
-                    <td><a th:href="@{/dibujo/{id}(id=${dibujo.id})}" th:text="${dibujo.titulo}">Título</a></td>
-                    <td th:text="${dibujo.tematica}">Temática</td>
-                    <td th:text="${dibujo.puntuacion}">Puntuación</td>
-                    <td th:text="${dibujo.precio}">Precio</td>
-                    <td><a th:href="@{/dibujo/editar/{id}(id=${dibujo.id})}">Editar</a></td>
-                    <td><a th:href="@{/dibujo/borrar/{id}(id=${dibujo.id})}">Borrar</a></td>
-                </tr>
+            <tbody id="listadibujos">
+                
             </tbody>
         </table>
-        <a th:href="@{/dibujo/new}"><button type="button">Nuevo dibujo</button></a>
-        <br><br>
-        <p th:text="${error}"></p>
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
-    <script>
-        function reestablecer(){
-            window.location.href = "/public/reestablecer";
-        }
-    </script>
 </body>
 </html>

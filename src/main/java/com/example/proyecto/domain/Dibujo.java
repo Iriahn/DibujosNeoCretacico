@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of="id")
 public class Dibujo {
 
-    private Long id;
+    private BigDecimal id;
 
     @NotNull
     private String titulo;

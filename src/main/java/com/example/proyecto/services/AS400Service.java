@@ -33,15 +33,20 @@ public class AS400Service {
         return jdbcTemplate.queryForList(sql);
     }
 
-    public List<Map<String, Object>> obtenerDibujo(Long id) {
+    public Map<String, Object> obtenerDibujo(Long id) {
         String sql = "SELECT * FROM IRIAHN1.DIBUJOS D WHERE D.IDDIB = ?";
-        return jdbcTemplate.queryForList(sql, id);
+        return jdbcTemplate.queryForList(sql, id).stream().findFirst().orElse(null);
+    }
+    
+    public Map<String, Object> obtenerDibujoTitulo(String titulo) {
+        String sql = "SELECT * FROM IRIAHN1.DIBUJOS D WHERE D.TITULO = ?";
+        return jdbcTemplate.queryForList(sql, titulo).stream().findFirst().orElse(null);
     }
     
     public void crearDibujo(Dibujo dibujo) {
         // El id no es necesario porque es autogenerado
         String sql = "INSERT INTO IRIAHN1.DIBUJOS (TITULO, TEMATICA, DESCRIPCION, FINALIDAD, CATEGORIA, SUBCATEGORIA, ANHO, PRECIO, IMAGEN, COMPLETADO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, dibujo.getTitulo(), dibujo.getTematica(), dibujo.getDescripcion(), dibujo.getFinalidad(), dibujo.getCategoria(), dibujo.getSubcategoria(), dibujo.getAnho(), dibujo.getPrecio(), dibujo.getImagen(), dibujo.getCompletado());
+        jdbcTemplate.update(sql, dibujo.getTitulo(), dibujo.getTematica(), dibujo.getDescripcion(), dibujo.getFinalidad(), dibujo.getCategoria().toString(), dibujo.getSubcategoria().toString(), dibujo.getAnho(), dibujo.getPrecio(), dibujo.getImagen(), dibujo.getCompletado());
     }
     
     @Transactional
@@ -53,8 +58,8 @@ public class AS400Service {
     }
 
     public void actualizarDibujo(Dibujo dibujo) {
-        String sql = "UPDATE IRIAHN1.DIBUJOS SET TITULO = ?, TEMATICA = ?, DESCRIPCION = ?, FINALIDAD = ?, ESTILO = ?, CATEGORIA = ?, ANHO = ?, PRECIO = ?, IMAGEN = ?, COMPLETADO = ? WHERE IDDIB = ?";
-        jdbcTemplate.update(sql, dibujo.getTitulo(), dibujo.getTematica(), dibujo.getDescripcion(), dibujo.getFinalidad(), dibujo.getSubcategoria(), dibujo.getCategoria(), dibujo.getAnho(), dibujo.getPrecio(), dibujo.getImagen(), dibujo.getCompletado(), dibujo.getId());
+        String sql = "UPDATE IRIAHN1.DIBUJOS SET TITULO = ?, TEMATICA = ?, DESCRIPCION = ?, FINALIDAD = ?, CATEGORIA = ?, SUBCATEGORIA = ?, ANHO = ?, PRECIO = ?, IMAGEN = ?, COMPLETADO = ? WHERE IDDIB = ?";
+        jdbcTemplate.update(sql, dibujo.getTitulo(), dibujo.getTematica(), dibujo.getDescripcion(), dibujo.getFinalidad(), dibujo.getCategoria().toString(), dibujo.getSubcategoria().toString(), dibujo.getAnho(), dibujo.getPrecio(), dibujo.getImagen(), dibujo.getCompletado(), dibujo.getId());
     }
 
     public void eliminarDibujo(Long id) {

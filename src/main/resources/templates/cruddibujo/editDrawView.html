@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
+    <link rel="icon" th:href="@{/images/comun/faviconIria.png}">
     <title>Dibujos Neo Cretácico</title>
-    <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
-    <link rel="stylesheet" th:href="@{css/comun.css}"/>
-    <script th:src="@{js/comun.js}" defer></script>
-    <script th:src="@{js/navsticky.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/reseteo.css}"/>
+    <link rel="stylesheet" th:href="@{/css/comun.css}"/>
+    <script th:src="@{/js/comun.js}" defer></script>
+    <script th:src="@{/js/navsticky.js}" defer></script>
   </head>
   <body>
     <header>
         <div id="cabecera">
-            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
+            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{/images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
         <!-- <div id="progreso"></div> -->
@@ -23,7 +23,7 @@
             <a th:href="@{/encargos}">Encargos</a>
             <a th:href="@{/contacto}">Contacto</a>
             <div class="dropdown">
-                <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
+                <img id="usericon" class="usericon" th:src="@{/images/comun/unregisteredicon.png}">
                 <div class="dropdown-content ocultar">
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
@@ -36,45 +36,59 @@
         </nav>
     </header>
     <main>
-      <h1>Editar curso</h1>
+      <h1>Editar dibujo</h1>
       <form method="post" action="#" th:action="@{/dibujo/editar/{id}/submit(id=${dibujo.id})}" th:object="${dibujo}" enctype="multipart/form-data">
-        <label for="id">Id: </label>
-        <input id="id" th:field="*{id}" readonly>
-        <br><br>
-        <label for="titulo">Título: </label>
-        <input name="titulo" type="text" th:field="*{titulo}">
-        <br><br>
-        <label for="tematica">Temática: </label>
-        <input name="tematica" type="text" th:field="*{tematica}">
-        <br><br>
-        <label for="descripcion">Descripción: </label>
-        <input name="descripcion" type="text" th:field="*{descripcion}">
-        <br><br>
-        <label>Estilo (Anime, Relista...): </label>
-        <select size="1" th:field="*{estilo}">
-            <div th:each="est : ${listaestilos}">
-                <option th:value="${est.estilo}" th:text="${est.estilo}"></option>
-            </div>
-        </select>
-        <br><br>
-        <label>Técnica: </label>
-        <select size="1" th:field="*{tecnica}">
-            <div th:each="tec : ${listatecnicas}">
-                <option th:value="${tec.tecnica}" th:text="${tec.tecnica}"></option>
-            </div>
-        </select>
-        <br><br>
-        <label>Año:</label>
-        <input type="number" th:field="*{anho}">
-        <br><br>
-        <label>Precio:</label>
-        <input type="number" th:field="*{precio}">
-        <br><br>
-        Adjuntar un fichero:
-        <input type="file" name="file">
-        <br><br>
-        <button type="submit">Enviar</button>
-        <a th:href="@{/public/drawlist}">Inicio</a>
+        <fieldset>
+          <input id="id" th:field="*{id}" type="hidden">
+          <div class="form-group">
+              <label for="titulo">Título: </label>
+              <input name="titulo" id="titulo" type="text" th:field="*{titulo}">
+          </div>
+          <div class="form-group">
+              <label for="tematica">Temática: </label>
+              <input name="tematica" id="tematica" type="text" th:field="*{tematica}">
+          </div>
+          <div class="form-group">
+              <label for="descripcion">Descripción: </label>
+              <input name="descripcion" id="descripcion" type="text" th:field="*{descripcion}">
+          </div>
+          <div class="form-group">
+              <label for="finalidad">Finalidad: </label>
+              <input name="finalidad" id="finalidad" type="text" th:field="*{finalidad}">
+          </div>
+          <div class="form-group">
+              <label>Categoría: </label>
+              <select size="1" th:field="*{categoria}">
+                  <option th:each="c : ${T(com.example.proyecto.domain.CategoriaEnum).values()}" th:value="${c}" th:text="${c}"></option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label>Subcategoría: </label>
+              <select size="1" th:field="*{subcategoria}">
+                  <option th:each="sc : ${T(com.example.proyecto.domain.SubCategoriaEnum).values()}" th:value="${sc}" th:text="${sc}"></option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label>Año:</label>
+              <input type="number" th:field="*{anho}">
+          </div>
+          <div class="form-group">
+              <label>Precio:</label>
+              <input type="number" th:field="*{precio}">
+          </div>
+          <div class="form-group">
+              <label for="imagen">Adjuntar un fichero:</label>
+              <input type="file" name="file">
+          </div>
+          <div class="form-group">
+              <label>Completado:</label>
+              <div class="radio-tipo">
+                  <input name="tipo" type="radio" th:value="true" th:field="*{completado}"><label>Sí</label>
+                  <input name="tipo" type="radio" th:value="false" th:field="*{completado}"><label>No</label>
+              </div>
+          </div>
+          <button type="submit">Enviar</button>
+        </fieldset>
       </form>
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>

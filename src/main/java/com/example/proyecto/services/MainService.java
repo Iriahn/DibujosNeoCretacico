@@ -28,7 +28,7 @@ public class MainService {
         return CategoriaEnum.values();
     }
 
-    public SubCategoriaEnum[] obtenerEstilos(){
+    public SubCategoriaEnum[] obtenerSubCategorias(){
         return SubCategoriaEnum.values();
     }
 

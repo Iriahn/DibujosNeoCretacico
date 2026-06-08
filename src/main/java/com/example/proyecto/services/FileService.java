@@ -7,7 +7,6 @@ import java.nio.file.*; //Files, Path, Paths, StandardCopyOption
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -16,13 +15,12 @@ public class FileService {
 
   private final Path rootLocation = Paths.get("uploadFiles");
 
-  public String storeFile(MultipartFile file, String id) throws RuntimeException { 
+  public String storeFile(MultipartFile file) throws RuntimeException { 
     if (file.isEmpty()) throw new RuntimeException("Fichero vacio");
-    String filename = StringUtils.cleanPath(file.getOriginalFilename());
+    String filename = file.getOriginalFilename();
     if (filename.contains (".."))
       throw new RuntimeException("Fichero incorrecto");
-    String extension = StringUtils.getFilenameExtension(filename); 
-    String storedFilename = id + "." + extension; // -------------------------------------------
+    String storedFilename = file.getOriginalFilename();
     try (InputStream inputStream = file.getInputStream()) { 
       Files.copy(inputStream, this.rootLocation.resolve(storedFilename), 
                     StandardCopyOption.REPLACE_EXISTING);

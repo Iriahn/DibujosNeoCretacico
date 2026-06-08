@@ -153,7 +153,7 @@ input[type="text"], input[type="number"], input[type="password"], select, textar
   border-radius: 0.35rem;
   /* width: 100%; */
 }
-input:hover, textarea:hover{
+input:not([type="file"]):hover, textarea:hover, select:hover{
   border: 1px solid var(--fourth-color);
 }
 input, textarea, button{

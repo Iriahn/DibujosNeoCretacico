@@ -44,7 +44,7 @@ public class PrintsController {
             Dibujo dibujo = new Dibujo();
             imagen = dibujo.getImagen();
             model.addAttribute("dibujo", dibujo);
-            model.addAttribute("listaestilos", dibujoService.obtenerEstilos());
+            model.addAttribute("listaestilos", dibujoService.obtenerSubCategorias());
             model.addAttribute("listatecnicas", dibujoService.obtenerCategorias());
             return "cruddibujo/editFormView";
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class PrintsController {
                     dibujo.setImagen(imagen);
                 }
                 else{
-                    String storedFileName = fileService.storeFile(file, Long.toString(dibujo.getId()));
+                    String storedFileName = fileService.storeFile(file);
                     dibujo.setImagen(storedFileName);
                 }
                 // dibujoService.editar(dibujo);

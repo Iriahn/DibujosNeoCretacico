@@ -10,14 +10,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.example.proyecto.services.AS400Service;
 import com.example.proyecto.services.FileService;
 
 import jakarta.validation.Valid;
 
-import com.example.proyecto.domain.Dibujo;
 import com.example.proyecto.domain.Print;
 import com.example.proyecto.services.MainService;
 
@@ -30,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class MainController {
 
     private final FileService fileService;
-    private final MainService mainService;
+    private final AS400Service as400Service;
     private String txterror;
 
     @GetMapping({"/index", "/home", "/"})
@@ -45,6 +43,10 @@ public class MainController {
     
     @GetMapping({"/encargo", "/encargos", "/comision", "/comission"})
     public String encargos(Model model) {
+        if(txterror != null){
+            model.addAttribute("error", txterror);
+            txterror = null;
+        }
         model.addAttribute("print", new Print());
         return "principal/encargosView";
     }
@@ -68,13 +70,15 @@ public class MainController {
                     unidad = 7l;
                 print.setPrecio(new BigDecimal(unidad*print.getUnidades()));
                 // dar de alta print
+                txterror = "Pedido registrado satisfactoriamente";
+                as400Service.crearPrint(print);
             }
         }catch(RuntimeException ex){
             txterror = ex.getMessage();
         }catch(Exception e){
             txterror = e.getMessage();
         }
-        return "redirect:/public/drawlist";
+        return "redirect:/encargo";
     }
 
     @GetMapping({"/contacto", "/contact"})

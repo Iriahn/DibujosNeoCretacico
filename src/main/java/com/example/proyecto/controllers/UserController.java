@@ -1,5 +1,8 @@
 package com.example.proyecto.controllers;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.proyecto.domain.RolEnum;
 import com.example.proyecto.domain.Usuario;
-import com.example.proyecto.services.UsuarioService;
+import com.example.proyecto.services.AS400Service;
 import com.example.proyecto.services.MainService;
 
 import jakarta.validation.Valid;
@@ -26,13 +29,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UsuarioService usuarioService;
-    private final MainService dibujoService;
+    private final AS400Service as400Service;
+    private final MainService mainService;
     private String txterror;
     
     @GetMapping("/usuario/userlist")
     public String showUsers(Model model) {
-        // model.addAttribute("listaususarios", usuarioService.obtenerUsuarios());
         if(txterror != null)
             model.addAttribute("error", txterror);
         txterror = null;
@@ -42,7 +44,6 @@ public class UserController {
     @GetMapping("/usuario/newUser")
     public String nuevousuario(Model model) {
         model.addAttribute("usuario", new Usuario());
-        model.addAttribute("anho", dibujoService.anho());
         return "crudusuario/newUserView";
     }
 
@@ -51,8 +52,8 @@ public class UserController {
         try{
             if(bindingresult.hasErrors())
                 txterror = "Error en el procesado";
-            // else
-            //     usuarioService.anadirUsu(usuario);
+            else
+                as400Service.crearUsuario(usuario);
         }catch(RuntimeException ex){
             txterror = ex.getMessage();
         }catch(Exception e){
@@ -68,62 +69,47 @@ public class UserController {
     }
 
     @PostMapping("/usuario/register/submit")
-    public String showAutoSubmit(@Valid @ModelAttribute("usuarioForm") Usuario nuevoUsuario, BindingResult bindingResult) {
-        
-        nuevoUsuario.setRol(RolEnum.USER);
-
-        // if (!bindingResult.hasErrors())
-        //     usuarioService.anadirUsu(nuevoUsuario);
-        return "redirect:/";
-    }
-
-    
-    @GetMapping("/usuario/editar")
-    public String showEditForm(Model model) {
-        // Usuario usuario = usuarioService.obtenerUsuarioConectado();
-        Usuario usuario = new Usuario();
-        // if (usuario != null) {
-            model.addAttribute("usuarioForm", usuario);
-            return "crudusuario/userEditView";
-        // } else {
-        //     return "redirect:/";
-        // }
-    }
-    
-    @PostMapping("/usuario/editar/submit")
-    public String showEditSubmit(@Valid @ModelAttribute("usuarioForm") Usuario usuario,
-            BindingResult bindingResult) {
-
-        // if (!bindingResult.hasErrors()) 
-        //     usuarioService.editar(usuario);
-        return "redirect:/";
+    public String showAutoSubmit(@Valid @ModelAttribute("usuarioForm") Usuario nuevoUsuario, BindingResult bindingresult) {
+        try{
+            nuevoUsuario.setRol(RolEnum.USER);
+            if(bindingresult.hasErrors())
+                txterror = "Error en el procesado";
+            else
+                as400Service.crearUsuario(nuevoUsuario);
+        }catch(RuntimeException ex){
+            txterror = ex.getMessage();
+        }catch(Exception e){
+            txterror = e.getMessage();
+        }
+        return "redirect:/usuario/userlist";
     }
 
     @GetMapping("/usuario/changepassword")
     public String showChangeForm(Model model) {
-        // Usuario usuario = usuarioService.obtenerUsuarioConectado();
-        Usuario usuario = new Usuario();
-        // if (usuario != null) {
-            model.addAttribute("usuarioForm", usuario);
+        Usuario usuario = mainService.obtenerUsuarioConectado();
+        if (usuario != null) {
+            Map<String, Object> userbbdd = as400Service.obtenerUsuarioNombre(usuario.getNombre());
+            Usuario user = new Usuario(new BigDecimal(Long.parseLong(userbbdd.get("IDUSU").toString())), userbbdd.get("NOMBRE").toString(), userbbdd.get("REDPREFERIDA").toString(), userbbdd.get("USERPREFERIDA").toString(), userbbdd.get("CONTRASENA").toString(), RolEnum.valueOf(userbbdd.get("ROL").toString()));
+            model.addAttribute("usuarioForm", user);
             return "crudusuario/userChangePasswordView";
-        // } else {
-        //     return "redirect:/";
-        // }
+        } else {
+            return "redirect:/usuario/userlist";
+        }
     }
 
     @PostMapping("/usuario/changepassword/submit")
     public String showChangeSubmit(@Valid @ModelAttribute("usuarioForm") Usuario usuario,
             BindingResult bindingResult) {
-
-        // if (!bindingResult.hasErrors()) 
-        //     usuarioService.editar(usuario);
+        if (!bindingResult.hasErrors()){
+            as400Service.cambiarContrasena(usuario);
+        }
         return "redirect:/";
     }
 
     @GetMapping("/usuario/borrar/{id}")
     public String showDeleteUser(@PathVariable Long id) {
         try{
-            // usuarioService.borrarUsu(id);
+            as400Service.eliminarUsuario(id);
             txterror = "Operación realizada con éxito";
         }catch(Exception e){
             txterror = e.getMessage();

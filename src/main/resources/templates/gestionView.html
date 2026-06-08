@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{images/faviconIria.png}">
-    <title>Contacto</title>
+    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
+    <title>Dibujos Neo Cretácico</title>
     <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
     <link rel="stylesheet" th:href="@{css/comun.css}"/>
     <link rel="stylesheet" th:href="@{css/contacto.css}"/>
@@ -14,21 +14,24 @@
 <body>
     <header>
         <div id="cabecera">
-           <a class="logo-a" href="/index.html"><img class="logo" src="/imagen/NeoCretacico.png" alt="logo dibujos neo cretácico"></a>
+            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
-        <div id="progreso"></div>
+        <!-- <div id="progreso"></div> -->
         <nav id="arriba">
-            <a href="/index.html">Principal</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="encargos.html">Encargos</a>
-            <a href="contacto.html">Contacto</a>
+            <a th:href="@{/}">Principal</a>
+            <a th:href="@{/portfolio}">Portfolio</a>
+            <a th:href="@{/encargos}">Encargos</a>
+            <a th:href="@{/contacto}">Contacto</a>
             <div class="dropdown">
-                <img id="usericon" class="usericon" src="/imagen/unregisteredicon.png">
+                <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
                 <div class="dropdown-content ocultar">
-                    <a href="/index.html#dibujodigital">Registrarse</a>
-                    <a href="/index.html#dibujotradicional">Iniciar sesión</a>
-                    <a href="/index.html#dibujotradicional">Salir</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
+                    <a sec:authorize="hasAnyRole('MANAGER', 'ADMIN')" th:href="@{/gestionar}">Gestionar</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/usuario/register}">Registrarse</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Iniciar sesión</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Salir</a>
                 </div>
             </div>
         </nav>
@@ -39,8 +42,10 @@
             <ul>
                 <li class="red"><a th:href="@{/dibujo/drawlist}">Dibujos</a></li>
                 <li class="red"><a th:href="@{/usuario/userlist}">Usuarios</a></li>
+                <li class="red" sec:authorize="hasRole('MANAGER')"><a th:href="@{/usuario/printlist}">Prints</a></li>
             </ul>
         </div>
+        <img class="avatar2" th:src="@{images/comun/NeoCretacico.png}">
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
    

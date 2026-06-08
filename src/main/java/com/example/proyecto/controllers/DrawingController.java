@@ -40,7 +40,6 @@ public class DrawingController {
     @GetMapping("/dibujo/new")
     public String nuevodibujo(Model model) {
         model.addAttribute("dibujo", new Dibujo());
-        model.addAttribute("anho", dibujoService.anho());
         model.addAttribute("listaestilos", dibujoService.obtenerEstilos());
         model.addAttribute("listatecnicas", dibujoService.obtenerCategorias());
         return "cruddibujo/newView";

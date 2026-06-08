@@ -3,18 +3,17 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
+    <link rel="icon" th:href="@{/images/comun/faviconIria.png}">
     <title>Dibujos Neo Cretácico</title>
-    <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
-    <link rel="stylesheet" th:href="@{css/comun.css}"/>
-    <link rel="stylesheet" th:href="@{css/principal.css}"/>
-    <script th:src="@{js/comun.js}" defer></script>
-    <script th:src="@{js/navsticky.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/reseteo.css}"/>
+    <link rel="stylesheet" th:href="@{/css/comun.css}"/>
+    <script th:src="@{/js/comun.js}" defer></script>
+    <script th:src="@{/js/navsticky.js}" defer></script>
   </head>
   <body>
     <header>
       <div id="cabecera">
-          <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
+          <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{/images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
           <h1>Dibujos Neo Cretácico</h1>
       </div>
       <!-- <div id="progreso"></div> -->
@@ -24,7 +23,7 @@
           <a th:href="@{/encargos}">Encargos</a>
           <a th:href="@{/contacto}">Contacto</a>
           <div class="dropdown">
-              <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
+              <img id="usericon" class="usericon" th:src="@{/images/comun/unregisteredicon.png}">
               <div class="dropdown-content ocultar">
                   <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
                   <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
@@ -39,12 +38,31 @@
     <main>
 
       <h1>Nuevo usuario</h1>
-      <form method="post" action="#" th:action="@{/usuario/autoUser/submit}"
+      <form method="post" action="#" th:action="@{/usuario/register/submit}"
         th:object="${usuarioForm}">
-        <label><input type="hidden" id="id" th:field="*{id}" /></label><br/>
-        <label>Nombre:<input type="text" id="nombre" th:field="*{nombre}" /></label><br/>
-        <label>Contraseña:<input type="password" id="password" th:field="*{password}" /></label><br/>                   
-        <input type="submit" value="Enviar" />
+        <fieldset>
+            <input type="hidden" id="id" th:field="*{id}">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Iria" th:field="*{nombre}">
+            </div>
+            <div class="form-group">
+                <label for="redcontacto">Red de contacto:</label>
+                <input type="text" name="redcontacto" id="redcontacto" placeholder="Twitter" th:field="*{redcontacto}">
+            </div>
+            <div class="form-group">
+                <label for="usercontacto">Nombre de usuario:</label>
+                <input type="text" name="usercontacto" id="usercontacto" placeholder="@iria_novoa" th:field="*{usercontacto}">
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" name="contrasena" id="contrasena" th:field="*{contrasena}">
+            </div>
+            <!-- ROL -->
+            <div class="button-container">
+                <button type="submit">Enviar formulario</button>
+            </div>
+        </fieldset>
       </form>
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-import com.example.proyecto.services.AS400ServicePrueba;
+import com.example.proyecto.services.AS400Service;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,39 +25,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequiredArgsConstructor
 public class AS400Controller {
 
-    private final AS400ServicePrueba as400ServicePrueba;
+    private final AS400Service as400Service;
     
     // 1. OBTENER TODOS LOS DIBUJOS (GET)
     @GetMapping("/api400/dibujos")
-    public ResponseEntity<List<Map<String, Object>>> listar() {
-        List<Map<String, Object>> dibujos = as400ServicePrueba.obtenerDibujos();
+    public ResponseEntity<List<Map<String, Object>>> listarDibs() {
+        List<Map<String, Object>> dibujos = as400Service.obtenerDibujos();
         return ResponseEntity.ok(dibujos);
     }
 
-    // 2. CREAR UN USUARIO (POST)
-    // Se envía un JSON: {"id": "100", "nombre": "Carlos"}
-    @PostMapping("/api400/usuarios")
-    public ResponseEntity<String> crear(@RequestBody Map<String, String> body) {
-        try {
-            as400ServicePrueba.crearUsuario(body.get("id"), body.get("nombre"));
-            return ResponseEntity.status(HttpStatus.CREATED).body("Usuario creado con éxito en AS400");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
-        }
+    @GetMapping("/api400/usuarios")
+    public ResponseEntity<List<Map<String, Object>>> listarUsers() {
+        List<Map<String, Object>> usuarios = as400Service.obtenerUsuarios();
+        return ResponseEntity.ok(usuarios);
     }
-
-    // 3. ACTUALIZAR UN USUARIO (PUT)
-    @PutMapping("/api400/usuarios/{id}")
-    public ResponseEntity<String> actualizar(@PathVariable String id, @RequestBody Map<String, String> body) {
-        as400ServicePrueba.actualizarNombre(id, body.get("nombre"));
-        return ResponseEntity.ok("Usuario actualizado");
-    }
-
-    // 4. ELIMINAR UN USUARIO (DELETE)
-    @DeleteMapping("/api400/usuarios/{id}")
-    public ResponseEntity<String> eliminar(@PathVariable String id) {
-        as400ServicePrueba.eliminarUsuario(id);
-        return ResponseEntity.ok("Usuario eliminado");
+    
+    @GetMapping("/api400/prints")
+    public ResponseEntity<List<Map<String, Object>>> listarPrints() {
+        List<Map<String, Object>> prints = as400Service.obtenerPrints();
+        return ResponseEntity.ok(prints);
     }
 
 }

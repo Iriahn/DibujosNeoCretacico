@@ -53,12 +53,12 @@ public class AS400Service {
     }
 
     public void actualizarDibujo(Dibujo dibujo) {
-        String sql = "UPDATE IRIAHN1.DIBUJOS SET TITULO = ?, TEMATICA = ?, DESCRIPCION = ?, FINALIDAD = ?, ESTILO = ?, CATEGORIA = ?, ANHO = ?, PRECIO = ?, IMAGEN = ?, COMPLETADO = ? WHERE ID = ?";
+        String sql = "UPDATE IRIAHN1.DIBUJOS SET TITULO = ?, TEMATICA = ?, DESCRIPCION = ?, FINALIDAD = ?, ESTILO = ?, CATEGORIA = ?, ANHO = ?, PRECIO = ?, IMAGEN = ?, COMPLETADO = ? WHERE IDDIB = ?";
         jdbcTemplate.update(sql, dibujo.getTitulo(), dibujo.getTematica(), dibujo.getDescripcion(), dibujo.getFinalidad(), dibujo.getSubcategoria(), dibujo.getCategoria(), dibujo.getAnho(), dibujo.getPrecio(), dibujo.getImagen(), dibujo.getCompletado(), dibujo.getId());
     }
 
     public void eliminarDibujo(Long id) {
-        String sql = "DELETE FROM IRIAHN1.DIBUJOS WHERE ID = ?";
+        String sql = "DELETE FROM IRIAHN1.DIBUJOS WHERE IDDIB = ?";
         jdbcTemplate.update(sql, id);
     }
 
@@ -69,8 +69,13 @@ public class AS400Service {
     }
 
     public List<Map<String, Object>> obtenerUsuario(Long id) {
-        String sql = "SELECT * FROM IRIAHN1.USUARIOS D WHERE D.IDDIB = ?";
+        String sql = "SELECT * FROM IRIAHN1.USUARIOS U WHERE U.IDUSU = ?";
         return jdbcTemplate.queryForList(sql, id);
+    }
+    
+    public Map<String, Object> obtenerUsuarioNombre(String nombre) {
+        String sql = "SELECT * FROM IRIAHN1.USUARIOS U WHERE U.NOMBRE = ?";
+        return jdbcTemplate.queryForList(sql, nombre).stream().findFirst().orElse(null);
     }
 
     public void crearUsuario(Usuario usuario) {
@@ -78,14 +83,20 @@ public class AS400Service {
         String sql = "INSERT INTO IRIAHN1.USUARIOS (NOMBRE, REDPREFERIDA, USERPREFERIDA, CONTRASENA, ROL) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, usuario.getNombre(), usuario.getRedcontacto(), usuario.getUsercontacto(), contrasena, usuario.getRol().toString());
     }
+    
+    public void cambiarContrasena(Usuario usuario) {
+        String contrasena = passwordEncoder.encode(usuario.getContrasena());
+        String sql = "UPDATE IRIAHN1.USUARIOS SET CONTRASENA = ? WHERE IDUSU = ?";
+        jdbcTemplate.update(sql, contrasena, usuario.getId());
+    }
 
     public void actualizarUsuario(Usuario usuario) {
-        String sql = "UPDATE IRIAHN1.USUARIOS SET NOMBRE = ?, REDPREFERIDA = ?, USERPREFERIDA = ?, ROL = ? WHERE ID = ?";
+        String sql = "UPDATE IRIAHN1.USUARIOS SET NOMBRE = ?, REDPREFERIDA = ?, USERPREFERIDA = ?, ROL = ? WHERE IDUSU = ?";
         jdbcTemplate.update(sql, usuario.getNombre(), usuario.getRedcontacto(), usuario.getUsercontacto(), usuario.getRol().toString(), usuario.getId());
     }
 
     public void eliminarUsuario(Long id) {
-        String sql = "DELETE FROM IRIAHN1.USUARIOS WHERE ID = ?";
+        String sql = "DELETE FROM IRIAHN1.USUARIOS WHERE IDUSU = ?";
         jdbcTemplate.update(sql, id);
     }
     
@@ -101,12 +112,12 @@ public class AS400Service {
     }
 
     public void crearPrint(Print print) {
-        String sql = "INSERT INTO IRIAHN1.PRINT (NOMBRE, REDPREFERIDA, USERPREFERIDA, UNIDADES, TAMANO, TIPO, COMENTARIOS, PRECIO, ESTADO, IDDIB) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, print.getNombre(), print.getRedContacto(), print.getRedNombre(), print.getUnidades(), print.getTamano(), print.getTipo(), print.getComentarios(), print.getPrecio(), print.getEstado(), print.getPrint());
+        String sql = "INSERT INTO IRIAHN1.PRINTS (NOMBRE, REDPREFERIDA, USERPREFERIDA, UNIDADES, TAMANO, TIPO, COMENTARIOS, PRECIO, ESTADO, IDDIB) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'EN PREPARACION', ?)";
+        jdbcTemplate.update(sql, print.getNombre(), print.getRedContacto(), print.getRedNombre(), print.getUnidades(), print.getTamano(), print.getTipo(), print.getComentarios(), print.getPrecio(), print.getPrint());
     }
 
     public void actualizarPrint(Print print) {//-----------------------------------
-        String sql = "UPDATE IRIAHN1.PRINTS SET NOMBRE = ?, REDPREFERIDA = ?, USERPREFERIDA = ?, UNIDADES = ?, TAMANO = ?, TIPO = ?, COMENTARIOS = ?, PRECIO = ?, ESTADO = ?, IDDIB = ? WHERE ID = ?";
+        String sql = "UPDATE IRIAHN1.PRINTS SET NOMBRE = ?, REDPREFERIDA = ?, USERPREFERIDA = ?, UNIDADES = ?, TAMANO = ?, TIPO = ?, COMENTARIOS = ?, PRECIO = ?, ESTADO = ?, IDDIB = ? WHERE IDPRI = ?";
         jdbcTemplate.update(sql,  print.getNombre(), print.getRedContacto(), print.getRedNombre(), print.getUnidades(), print.getTamano(), print.getTipo(), print.getComentarios(), print.getPrecio(), print.getEstado(), print.getPrint(), print.getId());
     }
 
@@ -117,7 +128,7 @@ public class AS400Service {
     }
 
     public List<Map<String, Object>> obtenerPedido(Long id) {
-        String sql = "SELECT * FROM IRIAHN1.PEDIDOS D WHERE D.IDDIB = ?";
+        String sql = "SELECT * FROM IRIAHN1.PEDIDOS D WHERE D.IDPED = ?";
         return jdbcTemplate.queryForList(sql, id);
     }
 
@@ -132,7 +143,7 @@ public class AS400Service {
     }
 
     public void actualizarPedido(Pedido pedido) {//-----------------------------------
-        String sql = "UPDATE IRIAHN1.PEDIDOS SET REDCONTACTO = ?, USERCONTACTO = ?, SUBCATEGORIA = ?, PRECIO = ?, FINALIDAD = ?, ESTILO = ?, CATEGORIA = ?, IDDIB = ?, IDUSU = ? WHERE ID = ?";
+        String sql = "UPDATE IRIAHN1.PEDIDOS SET REDCONTACTO = ?, USERCONTACTO = ?, SUBCATEGORIA = ?, PRECIO = ?, FINALIDAD = ?, ESTILO = ?, CATEGORIA = ?, IDDIB = ?, IDUSU = ? WHERE IDPED = ?";
         jdbcTemplate.update(sql, pedido.getRedContacto(), pedido.getRedNombre(), pedido.getEstado().toString(), pedido.getPrecio(), pedido.getFinalidad(), pedido.getSubcategoria(), pedido.getCategoria(), pedido.getDibujo().getId(), pedido.getUsuario().getId(), pedido.getId());
     }
 

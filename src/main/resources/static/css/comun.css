@@ -27,9 +27,12 @@ body{
   background-color: var(--main-color);
   text-align: justify;
   min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 main{
   padding: 2rem 1rem;
+  flex: 1;
 }
 h1, h2, h3, h4{
   font-style: italic;
@@ -143,7 +146,7 @@ fieldset{
 label{
   margin-bottom: 0.3rem;
 }
-input[type="text"], input[type="number"], select, textarea{
+input[type="text"], input[type="number"], input[type="password"], select, textarea{
   background-color: var(--main-color);
   border: 1px solid var(--second-color);
   padding: 0.5rem;
@@ -164,8 +167,6 @@ footer{
   height: 2.5rem;
   border-top-left-radius: 0.9rem;
   border-top-right-radius: 0.9rem;
-  /* position: fixed;
-  bottom: 0; */
 }
 
 /* Identifiers */

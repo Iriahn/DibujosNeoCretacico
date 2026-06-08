@@ -1,0 +1,14 @@
+/* Elements */
+table, .button-container{
+    justify-self: center;
+}
+th{
+    text-align: center;
+}
+tr td{
+    background-color: rgb(152,219,229, 0.5);
+}
+
+/* Identifiers */
+
+/* Classes */

@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
+    <link rel="icon" th:href="@{/images/comun/faviconIria.png}">
     <title>Dibujos Neo Cretácico</title>
-    <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
-    <link rel="stylesheet" th:href="@{css/comun.css}"/>
-    <link rel="stylesheet" th:href="@{css/principal.css}"/>
-    <script th:src="@{js/comun.js}" defer></script>
-    <script th:src="@{js/navsticky.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/reseteo.css}"/>
+    <link rel="stylesheet" th:href="@{/css/comun.css}"/>
+    <link rel="stylesheet" th:href="@{/css/userlist.css}"/>
+    <script th:src="@{/js/comun.js}" defer></script>
+    <script th:src="@{/js/navsticky.js}" defer></script>
+    <script th:src="@{/js/usuariolista.js}" defer></script>
 </head>
 <body>
     <header>
       <div id="cabecera">
-          <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
+          <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{/images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
           <h1>Dibujos Neo Cretácico</h1>
       </div>
       <!-- <div id="progreso"></div> -->
@@ -24,7 +25,7 @@
           <a th:href="@{/encargos}">Encargos</a>
           <a th:href="@{/contacto}">Contacto</a>
           <div class="dropdown">
-              <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
+              <img id="usericon" class="usericon" th:src="@{/images/comun/unregisteredicon.png}">
               <div class="dropdown-content ocultar">
                   <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
                   <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
@@ -40,22 +41,18 @@
         <table>
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nombre</th>
+                    <th>Rol</th>
                     <th>Borrar</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr th:each="user : ${listaususarios}">
-                    <td th:text="${user.id}">Id</td>
-                    <td th:text="${user.nombre}">Nombre</td>
-                    <td><a th:href="@{/usuario/borrarUser/{id}(id=${user.id})}">Borrar</a></td>
-                </tr>
+            <tbody id="listaususarios">
+                
             </tbody>
         </table>
-        <a th:href="@{/usuario/newUser}"><button type="button">Nuevo usuario</button></a>
-        <br><br>
-        <p th:text="${error}"></p>
+        <div class="button-container">
+            <a th:href="@{/usuario/newUser}"><button type="button">Nuevo usuario</button></a>
+        </div>
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>
 </body>

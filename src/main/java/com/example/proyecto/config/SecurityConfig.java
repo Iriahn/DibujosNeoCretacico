@@ -40,39 +40,16 @@ public class SecurityConfig {
             .requestMatchers("/gestionar", "/dibujo/**", "/usuario/**").hasAnyRole("ADMIN", "MANAGER")
             .requestMatchers("/prints/**").hasRole("MANAGER")
             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // para rutas: /css, /js /images
-            .requestMatchers(PathRequest.toH2Console()).hasAnyRole("ADMIN", "MANAGER")
+            // .requestMatchers(PathRequest.toH2Console()).hasAnyRole("ADMIN", "MANAGER")
             .anyRequest().authenticated())
             .formLogin(formLogin -> formLogin
                 .defaultSuccessUrl("/", true)
                 .permitAll())
             .logout(logout -> logout.permitAll())
-            .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+            // .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
             .httpBasic(Customizer.withDefaults());
         http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/accessError"));
         return http.build();
     } 
-    // @Bean
-    // SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-    //     http.headers(headersConfigurer -> headersConfigurer
-    //         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
-    //     http.authorizeHttpRequests(
-    //         auth -> auth
-    //         .requestMatchers("/", "/public/**", "/dibujo/drawlist", "/files/**", "/usuario/autoUser/**", "/valoracion/vallist").permitAll()
-    //         .requestMatchers("/valoracion/newVal/**", "/valoracion/borrarVal/**").authenticated()
-    //         .requestMatchers("/api/**", "/dibujo/**", "/usuario/**", "/valoracion/borrarVal/**").hasRole("ADMIN")
-    //         .requestMatchers("/dibujo/**", "/valoracion/**").hasRole("MANAGER")
-    //         .requestMatchers("/accessError").permitAll()
-    //         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // para rutas: /css, /js /images
-    //         .requestMatchers(PathRequest.toH2Console()).hasRole("ADMIN")
-    //         .anyRequest().authenticated())
-    //         .formLogin(formLogin -> formLogin
-    //             .defaultSuccessUrl("/", true)
-    //             .permitAll())
-    //         .logout(logout -> logout.permitAll())
-    //         .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
-    //         .httpBasic(Customizer.withDefaults());
-    //     http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/accessError"));
-    //     return http.build();
-    // } 
 
 }

@@ -1,5 +1,7 @@
 package com.example.proyecto.domain;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,7 +13,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of="id")
 public class Usuario {
 
-    private Long id;
+    private BigDecimal id;
 
     private String nombre;
 

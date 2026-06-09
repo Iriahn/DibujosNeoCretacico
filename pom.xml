@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>ihnt03e03</artifactId>
+	<artifactId>dibujosneocretacico</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ihnt03e03</name>
 	<description>Plantilla con Spring Initializr</description>

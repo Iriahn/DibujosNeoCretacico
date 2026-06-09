@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{images/comun/faviconIria.png}">
+    <link rel="icon" th:href="@{/images/comun/faviconIria.png}">
     <title>Dibujos Neo Cretácico</title>
-    <link rel="stylesheet" th:href="@{css/reseteo.css}"/>
-    <link rel="stylesheet" th:href="@{css/comun.css}"/>
-    <script th:src="@{js/comun.js}" defer></script>
-    <script th:src="@{js/navsticky.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/reseteo.css}"/>
+    <link rel="stylesheet" th:href="@{/css/comun.css}"/>
+    <script th:src="@{/js/comun.js}" defer></script>
+    <script th:src="@{/js/navsticky.js}" defer></script>
   </head>
   <body>
     <header>
         <div id="cabecera">
-            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
+            <a class="logo-a" th:href="@{/}"><img class="logo" th:src="@{/images/comun/NeoCretacico.png}" alt="logo dibujos neo cretácico"></a>
             <h1>Dibujos Neo Cretácico</h1>
         </div>
         <!-- <div id="progreso"></div> -->
@@ -23,7 +23,7 @@
             <a th:href="@{/encargos}">Encargos</a>
             <a th:href="@{/contacto}">Contacto</a>
             <div class="dropdown">
-                <img id="usericon" class="usericon" th:src="@{images/comun/unregisteredicon.png}">
+                <img id="usericon" class="usericon" th:src="@{/images/comun/unregisteredicon.png}">
                 <div class="dropdown-content ocultar">
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/editar}">Editar perfil</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/changepassword}">Cambiar contraseña</a>
@@ -37,44 +37,31 @@
     </header>
     <main>
       <h1>Editar curso</h1>
-      <form method="post" action="#" th:action="@{/dibujo/editar/{id}/submit(id=${dibujo.id})}" th:object="${dibujo}" enctype="multipart/form-data">
-        <label for="id">Id: </label>
-        <input id="id" th:field="*{id}" readonly>
-        <br><br>
-        <label for="titulo">Título: </label>
-        <input name="titulo" type="text" th:field="*{titulo}">
-        <br><br>
-        <label for="tematica">Temática: </label>
-        <input name="tematica" type="text" th:field="*{tematica}">
-        <br><br>
-        <label for="descripcion">Descripción: </label>
-        <input name="descripcion" type="text" th:field="*{descripcion}">
-        <br><br>
-        <label>Estilo (Anime, Relista...): </label>
-        <select size="1" th:field="*{estilo}">
-            <div th:each="est : ${listaestilos}">
-                <option th:value="${est.estilo}" th:text="${est.estilo}"></option>
-            </div>
-        </select>
-        <br><br>
-        <label>Técnica: </label>
-        <select size="1" th:field="*{tecnica}">
-            <div th:each="tec : ${listatecnicas}">
-                <option th:value="${tec.tecnica}" th:text="${tec.tecnica}"></option>
-            </div>
-        </select>
-        <br><br>
-        <label>Año:</label>
-        <input type="number" th:field="*{anho}">
-        <br><br>
-        <label>Precio:</label>
-        <input type="number" th:field="*{precio}">
-        <br><br>
-        Adjuntar un fichero:
-        <input type="file" name="file">
-        <br><br>
-        <button type="submit">Enviar</button>
-        <a th:href="@{/public/drawlist}">Inicio</a>
+      <form method="post" action="#" th:action="@{/prints/editar/{id}/submit(id=${print.id})}" th:object="${print}">
+        <fieldset>
+          <div class="form-group">
+            <label for="id">Id: </label>
+            <input id="id" th:field="*{id}" readonly>
+          </div>
+          <div class="form-group">
+            <label>Estado:</label>
+            <select size="1" th:field="*{estado}">
+              <option th:each="est : ${T(com.example.proyecto.domain.EstadoPrintEnum).values()}" th:value="${est}" th:text="${est}"></option>
+            </select>
+          </div>
+          <input type="hidden" id="nombre" th:field="*{nombre}">
+          <input type="hidden" id="redpreferida" th:field="*{redContacto}">
+          <input type="hidden" id="userpreferida" th:field="*{redNombre}">
+          <input type="hidden" id="unidades" th:field="*{unidades}">
+          <input type="hidden" id="tamano" th:field="*{tamano}">
+          <input type="hidden" id="tipo" th:field="*{tipo}">
+          <input type="hidden" id="coomentarios" th:field="*{comentarios}">
+          <input type="hidden" id="precio" th:field="*{precio}">
+          <input type="hidden" id="print" th:field="*{print}">
+          <div class="button-container">
+            <button type="submit">Enviar</button>
+          </div>
+        </fieldset>        
       </form>
     </main>
     <footer>©<span id="year"></span>&nbsp;- Iria Hidalgo Novoa UDAW2</footer>

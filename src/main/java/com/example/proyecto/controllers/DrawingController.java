@@ -76,9 +76,12 @@ public class DrawingController {
     public String showEditForm(@PathVariable Long id, Model model) {
         try {
             Map<String, Object> dib = as400Service.obtenerDibujo(id);
-            Dibujo dibujo = new Dibujo(new BigDecimal(dib.get("IDDIB").toString()), dib.get("TITULO").toString(), dib.get("TEMATICA").toString(), dib.get("DESCRIPCION").toString(), dib.get("FINALIDAD").toString(), CategoriaEnum.valueOf(dib.get("CATEGORIA").toString().toUpperCase()), SubCategoriaEnum.valueOf(dib.get("SUBCATEGORIA").toString().toUpperCase()), Integer.parseInt(dib.get("ANHO").toString()), new BigDecimal(dib.get("PRECIO").toString()), dib.get("IMAGEN").toString(), Boolean.parseBoolean(dib.get("COMPLETADO").toString()));
-            imagen = dibujo.getImagen();
-            model.addAttribute("dibujo", dibujo);
+            if(dib != null){
+                Dibujo dibujo = new Dibujo(new BigDecimal(dib.get("IDDIB").toString()), dib.get("TITULO").toString(), dib.get("TEMATICA").toString(), dib.get("DESCRIPCION").toString(), dib.get("FINALIDAD").toString(), CategoriaEnum.valueOf(dib.get("CATEGORIA").toString().toUpperCase()), SubCategoriaEnum.valueOf(dib.get("SUBCATEGORIA").toString().toUpperCase()), Integer.parseInt(dib.get("ANHO").toString()), new BigDecimal(dib.get("PRECIO").toString()), dib.get("IMAGEN").toString(), Boolean.parseBoolean(dib.get("COMPLETADO").toString()));
+                imagen = dibujo.getImagen();
+                model.addAttribute("dibujo", dibujo);
+            }else
+                txterror = "Dibujo no encontrado";
             return "cruddibujo/editDrawView";
         } catch (Exception e) {
             txterror = e.getMessage();

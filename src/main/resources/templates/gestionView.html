@@ -42,7 +42,7 @@
             <ul>
                 <li class="red"><a th:href="@{/dibujo/drawlist}">Dibujos</a></li>
                 <li class="red"><a th:href="@{/usuario/userlist}">Usuarios</a></li>
-                <li class="red" sec:authorize="hasRole('MANAGER')"><a th:href="@{/usuario/printlist}">Prints</a></li>
+                <li class="red" sec:authorize="hasRole('MANAGER')"><a th:href="@{/prints/list}">Prints</a></li>
             </ul>
         </div>
         <img class="avatar2" th:src="@{images/comun/NeoCretacico.png}">

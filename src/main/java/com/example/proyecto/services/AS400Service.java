@@ -111,9 +111,9 @@ public class AS400Service {
         return jdbcTemplate.queryForList(sql);
     }
 
-    public List<Map<String, Object>> obtenerPrint(Long id) {
+    public Map<String, Object> obtenerPrint(Long id) {
         String sql = "SELECT * FROM IRIAHN1.PRINTS PR WHERE PR.IDPRI = ?";
-        return jdbcTemplate.queryForList(sql, id);
+        return jdbcTemplate.queryForList(sql, id).stream().findFirst().orElse(null);
     }
 
     public void crearPrint(Print print) {
@@ -123,7 +123,12 @@ public class AS400Service {
 
     public void actualizarPrint(Print print) {//-----------------------------------
         String sql = "UPDATE IRIAHN1.PRINTS SET NOMBRE = ?, REDPREFERIDA = ?, USERPREFERIDA = ?, UNIDADES = ?, TAMANO = ?, TIPO = ?, COMENTARIOS = ?, PRECIO = ?, ESTADO = ?, IDDIB = ? WHERE IDPRI = ?";
-        jdbcTemplate.update(sql,  print.getNombre(), print.getRedContacto(), print.getRedNombre(), print.getUnidades(), print.getTamano(), print.getTipo(), print.getComentarios(), print.getPrecio(), print.getEstado(), print.getPrint(), print.getId());
+        jdbcTemplate.update(sql,  print.getNombre(), print.getRedContacto(), print.getRedNombre(), print.getUnidades(), print.getTamano(), print.getTipo(), print.getComentarios(), print.getPrecio(), print.getEstado().toString(), print.getPrint(), print.getId());
+    }
+
+    public void eliminarPrint(Long id) {
+        String sql = "DELETE FROM IRIAHN1.PRINTS WHERE IDPRI = ?";
+        jdbcTemplate.update(sql, id);
     }
 
     // -------------------------- Pedidos ------------------------------------------
